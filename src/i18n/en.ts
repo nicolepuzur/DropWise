@@ -437,7 +437,7 @@ export const en = {
     privacyBody: 'Your choices are saved on this device only (in localStorage) so your plan is still there when you return. Clear your browser data to remove them.',
     aiTitle: 'Responsible AI use',
     aiBody:
-      'This project was built with Claude Code, an AI coding assistant, working from the student’s instructions. The prompts and what was checked by hand are listed in docs/AI_USAGE.md. No images were AI-generated: the scenes are drawn in code.',
+      'This project was built with Claude Code, an AI coding assistant, working from the student’s instructions. The prompts, the checks that were run and the steps to reproduce the build are listed in docs/AI_USAGE.md. No images were AI-generated: the scenes are drawn in code.',
     licenceTitle: 'Licence',
     licenceBody: 'Open source under the MIT licence.',
   },

@@ -46,7 +46,7 @@ interface ChipsProps<T extends string> {
 /** A row of mutually exclusive choices, each with an optional one-line hint. */
 export function Chips<T extends string>({ label, options, value, onChange }: ChipsProps<T>) {
   return (
-    <fieldset>
+    <fieldset className="min-w-0">
       <legend className="mb-3 text-[0.95rem] text-ice/85">{label}</legend>
       <div className="grid gap-2 sm:grid-cols-[repeat(auto-fit,minmax(9.5rem,1fr))]">
         {options.map((option) => {

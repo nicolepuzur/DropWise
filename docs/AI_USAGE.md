@@ -64,12 +64,12 @@ These checks were run by the AI assistant, with web look-ups, tests and a browse
 - **Figures that came from the student's brief** and could not all be confirmed at a primary source: "30–50 %" for drip irrigation (field studies and Project Drawdown give about 30–40 %, so the site says the range varies), Israel reusing "almost 90 %" (reports give 85–90 %), and old networks in Romania losing 30–40 %. They are worded as ranges or as reported figures.
 - **Singapore's NEWater share (up to 40 %)** was found in secondary reporting only; the PUB page checked did not repeat it. The site words it as "reported" and the README flags it for a last check before submission.
 - **Assumptions are labelled**: drip, sprinkler and flood efficiencies (60 / 75 / 90 %), the crop water needs, the share of used water that returns to the sewer (80 %), shower and tap flows, the size of a drop, the solar yield of three regions and the size of a panel. Each tool shows its formula in a "How is this calculated?" box.
-- Every calculation is a small function with unit tests (52 tests). The pages were run in a browser: every page at desktop width, the home page and the menu at phone width, and the home page in Russian.
+- Every calculation is a small function with unit tests (52 tests). The pages were run in a browser: the main pages were looked at by eye, and then all nine pages plus the "not found" page were run in English, Romanian and Russian, at desktop and phone size, with an automated layout check (no sideways scrolling, no text outside its box, no console errors). That check found four layout problems, which were fixed (see the README, *Problems faced*). The check script is a one-off and is not part of the repository.
 - The English, Romanian and Russian texts are checked by a test for identical keys, list lengths and placeholders. A fluent reader should still read the Romanian and Russian once.
 
 ### Still for the student to do
 
-- Read every page in English, Romanian and Russian, and change anything that does not sound right. Only the Russian home page was looked at in a browser.
+- Read every page in English, Romanian and Russian, and change anything that does not sound right. The layout was checked automatically, but no fluent reader has proof-read the Romanian or Russian text.
 - Re-open the sources behind the key statistics, and the Singapore figure, before submitting.
 - Run `npm run dev`, try each tool, and be able to explain its formula (each one is in its "How is this calculated?" box and in the README).
 - Add the live address to the README, and confirm the documentation with the supervisor before uploading it.

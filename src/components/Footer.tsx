@@ -83,8 +83,8 @@ export function Footer() {
 
       <p
         aria-hidden="true"
-        className="display pointer-events-none select-none whitespace-nowrap bg-gradient-to-b from-aqua/25 to-transparent bg-clip-text text-center leading-[0.8] tracking-[0.06em] text-transparent"
-        style={{ fontSize: 'clamp(3.5rem, 15vw, 15rem)', marginBottom: '-0.12em' }}
+        className="display pointer-events-none select-none whitespace-nowrap bg-gradient-to-b from-aqua/25 to-transparent bg-clip-text text-center text-[length:calc(100vw/6.8)] leading-[0.8] tracking-[0.06em] text-transparent lg:text-[length:calc((100vw-var(--sidebar-offset))/6.8)]"
+        style={{ marginBottom: '-0.12em' }}
       >
         {BRAND}
       </p>

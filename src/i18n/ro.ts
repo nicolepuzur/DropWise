@@ -439,7 +439,7 @@ export const ro: Translation = {
     privacyBody: 'Alegerile tale sunt salvate doar pe acest dispozitiv (în localStorage), ca planul să fie acolo când te întorci. Șterge datele browserului ca să le elimini.',
     aiTitle: 'Utilizarea responsabilă a IA',
     aiBody:
-      'Acest proiect a fost construit cu Claude Code, un asistent de programare cu IA, pornind de la instrucțiunile elevului. Prompturile și ce a fost verificat manual sunt listate în docs/AI_USAGE.md. Nicio imagine nu a fost generată de IA: scenele sunt desenate în cod.',
+      'Acest proiect a fost construit cu Claude Code, un asistent de programare cu IA, pornind de la instrucțiunile elevei. Prompturile, verificările făcute și pașii pentru a reproduce construcția sunt listate în docs/AI_USAGE.md. Nicio imagine nu a fost generată de IA: scenele sunt desenate în cod.',
     licenceTitle: 'Licență',
     licenceBody: 'Cod deschis, sub licența MIT.',
   },

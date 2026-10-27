@@ -58,9 +58,9 @@ export function SolutionRail() {
   }, [pinned])
 
   const heading = (
-    <div className="w-[min(30rem,84vw)] shrink-0 self-center pr-6">
+    <div className="w-[min(32rem,84vw)] shrink-0 self-center pr-6">
       <p className="eyebrow">{r.eyebrow}</p>
-      <h2 className="display mt-4 text-[clamp(2rem,4vw,3.3rem)] text-balance">{r.title}</h2>
+      <h2 className="display mt-4 text-[clamp(1.7rem,3vw,2.7rem)] text-balance">{r.title}</h2>
     </div>
   )
 
@@ -76,7 +76,7 @@ export function SolutionRail() {
         <SolutionIcon id={ICONS[i]} className="relative h-28 w-28 text-aqua transition-transform duration-500 group-hover:scale-110" />
       </div>
       <div>
-        <h3 className="display text-[1.6rem]">{card.title}</h3>
+        <h3 className="display text-[clamp(1.2rem,5.4vw,1.6rem)]">{card.title}</h3>
         <p className="mono mt-3 text-[0.72rem] uppercase tracking-[0.14em] text-aqua">{card.tag}</p>
         <p className="mt-4 text-[0.98rem] leading-relaxed text-ice/75">{card.body}</p>
         <span className="mt-6 flex items-center justify-between border-t border-line pt-4 text-sm font-medium text-white">

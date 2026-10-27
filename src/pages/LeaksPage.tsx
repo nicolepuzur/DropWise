@@ -59,7 +59,7 @@ export function LeaksPage() {
       <PageHeader eyebrow={l.eyebrow} title={l.title} sub={l.sub} />
 
       <Section tone="plain" className="!pt-12">
-        <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_20rem]">
           <Panel className="!p-3 sm:!p-4">
             <svg
               viewBox={`0 0 ${NETWORK_W} ${NETWORK_H}`}

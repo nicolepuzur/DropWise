@@ -95,7 +95,7 @@ export function ReusePage() {
       <PageHeader eyebrow={r.eyebrow} title={r.title} sub={r.sub} />
 
       <Section tone="plain" className="!pt-12">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,26rem)_1fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,26rem)_1fr]">
           <Panel className="space-y-8">
             <RangeField
               id="people"

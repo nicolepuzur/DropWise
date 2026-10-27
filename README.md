@@ -37,12 +37,12 @@ The jury scores nine criteria from 1 to 5. This is where the project answers eac
 | Originality / creativity | Each of the five solutions in the brief becomes a small model you can change; the planet is poured into 100 litres, with lakes and rivers drawn at their true size; the leak hunter is a game; the six hero scenes are drawn in code |
 | Practicality | A real problem (SDG 6) with cited numbers; every tool ends in litres a person, farm or city could save; no account, no install, works on a phone |
 | UI / UX | A full-screen slideshow, navigation on the right, three languages, a skip link, visible focus, keyboard control of the slideshow, and no forced motion for people who ask for less |
-| Functionality | 52 automated tests, inputs clamped and saved data re-validated, every page checked in a browser at desktop width, the home page and the menu also at phone width; limits of the models are written next to each tool |
+| Functionality | 52 automated tests, inputs clamped and saved data re-validated, every page checked automatically in English, Romanian and Russian at desktop and phone size (layout and console errors) and by eye on the main pages; limits of the models are written next to each tool |
 | Technical skills | React 19, TypeScript and Tailwind v4; pure, tested calculation modules; a custom i18n layer with a test that keeps three languages in step; SVG scenes from seeded random numbers; a pinned horizontal scroll row; validated local storage |
 | Oral presentation | A 15-minute outline with the demo flow and likely questions is in [docs/SUBMISSION.md](docs/SUBMISSION.md) |
 | Documentation | This README and its PDF, the [design plan](docs/design/plan.svg), the [AI usage log](docs/AI_USAGE.md), screenshots, sources and a licence table |
 | The stand design | A poster and booth plan is in [docs/SUBMISSION.md](docs/SUBMISSION.md) |
-| Responsible AI usage | Tool, model and every prompt cited; what was checked by hand; a step-by-step process to reproduce the build; no AI-generated images; licensing and privacy covered ([AI usage log](docs/AI_USAGE.md)) |
+| Responsible AI usage | Tool, model and every prompt cited; the checks that were run; a step-by-step process to reproduce the build; no AI-generated images; licensing and privacy covered ([AI usage log](docs/AI_USAGE.md)) |
 
 Official dates (from [infomatrix.ro](https://www.infomatrix.ro)): registration for Season 2027 opens on 1 January 2027, the submission deadline is **15 March 2027** (documentation, source code and a demo video), finalists are announced on **20 March 2027**, and the Global Finals are in Bucharest on **27–31 May 2027**.
 
@@ -159,7 +159,7 @@ The structure follows the student's earlier projects (ClimaWatch, WasteLand and 
 | **27 Oct 2026** | **Research and plan.** Studied the structure of the earlier projects and the Magnesia reference; checked the key statistics against their sources (JMP, USGS, FAO, EPA, European Commission and others). |
 | **27 Oct 2026** | **Project and logic.** Vite + React + TypeScript scaffold, Tailwind v4 tokens, and the tested core: Earth's water, irrigation, reuse, desalination, leaks, home audit, number formatting and validated local storage. |
 | **27 Oct 2026** | **Interface and content.** English, Romanian and Russian translations (with a test that they stay in step), the right-hand navigation, the six-scene hero slideshow and the pinned solution row, and every page. |
-| **27 Oct 2026** | **Checks.** Every page run in a browser at desktop width, the home page and the menu at phone width, the home page in Russian; fixes after testing are listed in [Problems faced](#6-problems-faced--how-they-were-solved). |
+| **27–28 Oct 2026** | **Checks.** The main pages were looked at in a browser, then every page was run in English, Romanian and Russian at desktop and phone size with an automated layout check (no sideways scrolling, no text outside its box, no console errors); the fixes are listed in [Problems faced](#6-problems-faced--how-they-were-solved). |
 | **27 Oct 2026** | **Publication and documentation.** Public GitHub repository on the student's account, live deployment on Vercel, the team credited on the site, a design-plan sketch, this README as a PDF, and the AI usage log extended with a reproducible process. The README was checked against the official regulations, category page and rubric. |
 
 ---
@@ -228,7 +228,9 @@ src/
 - **Grey blocks before a section revealed itself.** Cells that fade in on scroll showed the divider colour behind them. *Solution:* the cells carry their own borders over a plain background.
 - **Text on a bright sunset.** The tag line under the "Fresh water from the sea" headline disappeared against the glow. *Solution:* a soft dark vignette behind the text and a text shadow.
 - **A drop falling through the headline.** The tap scene's drop crossed the centred text. *Solution:* the faucet moved to the right third, and that scene is anchored to the right edge on narrow screens.
-- **Long Russian and Romanian words in wide capitals.** *Solution:* the navigation and buttons wrap instead of overflowing, and the Russian home page was checked in a browser; the other pages are to be read once in each language before submitting.
+- **Long Russian and Romanian words in wide capitals.** The automated layout check found that the heading of the sliding solution row and the card titles were wider than their boxes in Romanian and Russian. *Solution:* smaller, fluid sizes for those headings. The texts themselves are still to be proof-read by a fluent reader before submitting.
+- **A form wider than a phone screen.** On the Russian irrigation page the whole page scrolled sideways by 30 px, because a `<fieldset>` is as wide as its longest content by default. *Solution:* `min-w-0` on fieldsets and single-column grids that may shrink.
+- **The giant footer name was cut off.** It was sized from the window width, but on large screens the page is narrower by the width of the right-hand panel, so the last letters fell outside. *Solution:* size it from the space it really has.
 - **A pinned section that must not trap people.** *Solution:* the sideways row is only pinned on large screens and for people who have not asked for reduced motion; everyone else gets a normal swipeable row.
 - **Corrupted or hand-edited saved data.** *Solution:* `sanitizeState` rebuilds the state from whatever it finds and falls back to defaults field by field (tested).
 - **A right-hand navigation on a phone.** *Solution:* a fixed panel from the `lg` breakpoint up, and below it a header with a menu button that opens a drawer from the right (closes on route change and on Escape, locks scrolling while open).
