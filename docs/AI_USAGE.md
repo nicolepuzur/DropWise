@@ -72,7 +72,7 @@ These checks were run by the AI assistant, with web look-ups, tests and a browse
 - Read every page in English, Romanian and Russian, and change anything that does not sound right. The layout was checked automatically, but no fluent reader has proof-read the Romanian or Russian text.
 - Re-open the sources behind the key statistics, and the Singapore figure, before submitting.
 - Run `npm run dev`, try each tool, and be able to explain its formula (each one is in its "How is this calculated?" box and in the README).
-- Add the live address to the README, and confirm the documentation with the supervisor before uploading it.
+- Confirm the documentation with the supervisor before uploading it.
 
 ## Reproducible process
 

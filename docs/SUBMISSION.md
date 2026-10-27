@@ -23,7 +23,7 @@ Everything here comes from the official pages at [infomatrix.ro](https://www.inf
 - [ ] Documentation: [DropWise-documentation.pdf](DropWise-documentation.pdf), which is the README (re-make it if the README changes)
 - [ ] Source code: https://github.com/nicolepuzur/DropWise (public, MIT)
 - [ ] Demo video (script below)
-- [ ] The live address added to the README (it still says "add the Vercel address here")
+- [x] The live address is in the README: https://drop-wise-s8pt.vercel.app
 - [ ] All pages read in English, Romanian and Russian; key statistics re-checked at their sources
 - [ ] [AI_USAGE.md](AI_USAGE.md) read through, and every sentence in it true for you
 

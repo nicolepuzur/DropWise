@@ -4,7 +4,7 @@
 
 Built for **Sustainable Development Goal 6, Clean Water and Sanitation**. Entry for **Infomatrix 2027**, category **Software Development** (Project Contest), by **Nicole Puzur**, supervised by **Azamat Jayush**.
 
-### 🔴 Live app → _add the Vercel address here_
+### 🔴 Live app → [drop-wise-s8pt.vercel.app](https://drop-wise-s8pt.vercel.app)
 
 ### 📦 Source code → [github.com/nicolepuzur/DropWise](https://github.com/nicolepuzur/DropWise)
 
