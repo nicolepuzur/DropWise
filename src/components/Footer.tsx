@@ -73,7 +73,9 @@ export function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-2 px-6 pb-4 text-xs uppercase tracking-[0.16em] text-ice/45 sm:px-10">
-        <span>© 2026 {BRAND}</span>
+        <span>
+          © 2026 {BRAND} · Nicole Puzur
+        </span>
         <span>
           {t.footer.licence} · {t.footer.open}
         </span>

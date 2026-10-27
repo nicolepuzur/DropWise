@@ -2,24 +2,49 @@
 
 **More than two billion people still have no safely managed drinking water, and the problem feels too big and too far away to touch.** DropWise makes it concrete: it shows where Earth's water really is, and lets you try the five fixes that work — in a field, a treatment plant, a desalination plant, a leaking pipe network and your own kitchen.
 
-Built for **Sustainable Development Goal 6, Clean Water and Sanitation**. Project prepared for Infomatrix, category **Software Development** (Project Contest).
+Built for **Sustainable Development Goal 6, Clean Water and Sanitation**. Entry for **Infomatrix 2027**, category **Software Development** (Project Contest), by **Nicole Puzur**, supervised by **Azamat Jayush**.
 
-### 🔴 Live app → _add your Vercel URL here after deploying_
+### 🔴 Live app → _add the Vercel address here_
+
+### 📦 Source code → [github.com/nicolepuzur/DropWise](https://github.com/nicolepuzur/DropWise)
 
 ### Infomatrix requirements checklist
 
-| Requirement (Infomatrix regulations and Software Development page) | Where it is met |
+Checked against the official [regulations](https://www.infomatrix.ro/guide/regulations.html), the [Software Development page](https://www.infomatrix.ro/categories/software-development.html) and the [evaluation rubric](https://www.infomatrix.ro/guide/evaluation-rubrics.html), read on 27 October 2026. The regulations state that rules can change without notice, so they are to be re-read before submitting.
+
+| Requirement | Where it is met |
 |---|---|
-| Entry in English | The site opens in English by default (Romanian and Russian are optional); all documentation is in English |
-| At most two students and a supervisor, as distinct roles | [People involved](#2-people-involved) |
-| Description with sketches or images of the idea | [Screenshots](#screenshots) |
-| Early-stage plans and designs | [Early-stage plan & design decisions](#3-early-stage-plan-design-decisions--timeline) |
-| Iterations during development | [Development timeline](#development-timeline) and the Git history |
-| Software and hardware specifications | [Specifications](#5-software--hardware-specifications) |
-| Problems faced and how they were solved | [Problems faced](#6-problems-faced--how-they-were-solved) |
-| Open source, original work, no third-party rights infringed | [MIT licence](LICENSE); every third-party resource and its licence is in [Third-party content](#third-party-content--licences) |
-| Cite all prompts, models and AI resources | [Responsible AI](#7-responsible-ai-usage) and the full [AI usage log](docs/AI_USAGE.md), also summarised on the site's *About* page |
+| Entry and documentation in English (Regulations §5) | The site opens in English by default (Romanian and Russian are optional); all documentation is in English |
+| At most two students and a supervisor, as distinct roles (§2, §5) | [People involved](#2-people-involved): one student and one supervisor |
+| Project description with idea sketches or images (§5) | [Description](#1-project-description), [screenshots](#screenshots) and the [design plan](docs/design/plan.svg) |
+| Early draft plans and designs (§5, §6) | [Early-stage plan & design decisions](#3-early-stage-plan-design-decisions--timeline) and the [design plan](docs/design/plan.svg) |
+| Development iterations and a timeline (§5, §6) | [Development timeline](#development-timeline) and the Git history |
+| Lists of software and hardware (§5, §6) | [Specifications](#5-software--hardware-specifications) |
+| Names of contributors (§6) | [People involved](#2-people-involved) |
+| Problems encountered and their solutions (§6) | [Problems faced](#6-problems-faced--how-they-were-solved) |
+| Open source, not subject to anyone's proprietary rights (§10) | Public repository under the [MIT licence](LICENSE) |
+| No third-party rights infringed (§13) | [Third-party content & licences](#third-party-content--licences); no photographs or illustrations from other sources |
+| Cite all prompts, models and AI resources, in the documentation and the presentation (Software Development page) | [Responsible AI](#7-responsible-ai-usage), the full [AI usage log](docs/AI_USAGE.md), and the site's *About* page |
+| Documentation uploaded with the entry (§6) | This README with the AI usage log as an appendix, also as a PDF: [docs/DropWise-documentation.pdf](docs/DropWise-documentation.pdf) |
 | A real-world problem, practical and user-friendly | [The problem](#the-problem); the app works on desktop and phone |
+
+### How the nine judging criteria are addressed
+
+The jury scores nine criteria from 1 to 5. This is where the project answers each one; the scores are the jury's to give.
+
+| Criterion | What the project does |
+|---|---|
+| Originality / creativity | Each of the five solutions in the brief becomes a small model you can change; the planet is poured into 100 litres, with lakes and rivers drawn at their true size; the leak hunter is a game; the six hero scenes are drawn in code |
+| Practicality | A real problem (SDG 6) with cited numbers; every tool ends in litres a person, farm or city could save; no account, no install, works on a phone |
+| UI / UX | A full-screen slideshow, navigation on the right, three languages, a skip link, visible focus, keyboard control of the slideshow, and no forced motion for people who ask for less |
+| Functionality | 52 automated tests, inputs clamped and saved data re-validated, every page checked in a browser at desktop width, the home page and the menu also at phone width; limits of the models are written next to each tool |
+| Technical skills | React 19, TypeScript and Tailwind v4; pure, tested calculation modules; a custom i18n layer with a test that keeps three languages in step; SVG scenes from seeded random numbers; a pinned horizontal scroll row; validated local storage |
+| Oral presentation | A 15-minute outline with the demo flow and likely questions is in [docs/SUBMISSION.md](docs/SUBMISSION.md) |
+| Documentation | This README and its PDF, the [design plan](docs/design/plan.svg), the [AI usage log](docs/AI_USAGE.md), screenshots, sources and a licence table |
+| The stand design | A poster and booth plan is in [docs/SUBMISSION.md](docs/SUBMISSION.md) |
+| Responsible AI usage | Tool, model and every prompt cited; what was checked by hand; a step-by-step process to reproduce the build; no AI-generated images; licensing and privacy covered ([AI usage log](docs/AI_USAGE.md)) |
+
+Official dates (from [infomatrix.ro](https://www.infomatrix.ro)): registration for Season 2027 opens on 1 January 2027, the submission deadline is **15 March 2027** (documentation, source code and a demo video), finalists are announced on **20 March 2027**, and the Global Finals are in Bucharest on **27–31 May 2027**.
 
 ---
 
@@ -106,8 +131,8 @@ Taken from the running app at 1440 × 900 (phone shots at 390 × 844).
 
 | Role | Name |
 |---|---|
-| Student developer | _add your name_ |
-| Supervisor | _add the supervisor's name_ |
+| Student developer | Nicole Puzur (GitHub: [nicolepuzur](https://github.com/nicolepuzur)) |
+| Supervisor | Azamat Jayush |
 
 Team size: 1 student (solo entry), within the category's 1–2 student limit.
 
@@ -123,6 +148,10 @@ The project started from one framing question: *how do you make "2 billion peopl
 
 The structure follows the student's earlier projects (ClimaWatch, WasteLand and PlasticFree): a Problem page, a Solution page, interactive tools, an About page, English / Romanian / Russian and a test suite. The look follows a reference site, [Magnesia](https://www.magnesia.cz): ink-navy sections lit by blue light, wide tracked capitals, a full-screen cinematic hero slideshow, capsule buttons with a luminous round arrow, a horizontal row of cards that slides sideways as the page scrolls, and smooth wheel scrolling. Only the *visual language* was taken; no code, images or fonts were copied. The reference's headline typeface (Aviano Sans) is commercial, so **Tenor Sans** is used instead, with **Manrope** for body text. Its photographs are replaced by scenes drawn in code. The navigation sits on the **right**.
 
+![DropWise design plan: site map, shared state, layout sketch, palette and user flow](docs/design/plan.svg)
+
+*Design plan — the site map, how the tools share one state, the layout with the navigation on the right (desktop and phone), the palette and the user flow.*
+
 ### Development timeline
 
 | Date | What happened |
@@ -130,7 +159,8 @@ The structure follows the student's earlier projects (ClimaWatch, WasteLand and 
 | **27 Oct 2026** | **Research and plan.** Studied the structure of the earlier projects and the Magnesia reference; checked the key statistics against their sources (JMP, USGS, FAO, EPA, European Commission and others). |
 | **27 Oct 2026** | **Project and logic.** Vite + React + TypeScript scaffold, Tailwind v4 tokens, and the tested core: Earth's water, irrigation, reuse, desalination, leaks, home audit, number formatting and validated local storage. |
 | **27 Oct 2026** | **Interface and content.** English, Romanian and Russian translations (with a test that they stay in step), the right-hand navigation, the six-scene hero slideshow and the pinned solution row, and every page. |
-| **27 Oct 2026** | **Checks.** Run in a browser at desktop and phone width and in Russian; fixes after testing are listed in [Problems faced](#6-problems-faced--how-they-were-solved). |
+| **27 Oct 2026** | **Checks.** Every page run in a browser at desktop width, the home page and the menu at phone width, the home page in Russian; fixes after testing are listed in [Problems faced](#6-problems-faced--how-they-were-solved). |
+| **27 Oct 2026** | **Publication and documentation.** Public GitHub repository on the student's account, live deployment on Vercel, the team credited on the site, a design-plan sketch, this README as a PDF, and the AI usage log extended with a reproducible process. The README was checked against the official regulations, category page and rubric. |
 
 ---
 
@@ -198,7 +228,7 @@ src/
 - **Grey blocks before a section revealed itself.** Cells that fade in on scroll showed the divider colour behind them. *Solution:* the cells carry their own borders over a plain background.
 - **Text on a bright sunset.** The tag line under the "Fresh water from the sea" headline disappeared against the glow. *Solution:* a soft dark vignette behind the text and a text shadow.
 - **A drop falling through the headline.** The tap scene's drop crossed the centred text. *Solution:* the faucet moved to the right third, and that scene is anchored to the right edge on narrow screens.
-- **Long Russian and Romanian words in wide capitals.** *Solution:* checked at desktop and phone width in Russian; the navigation and buttons wrap instead of overflowing.
+- **Long Russian and Romanian words in wide capitals.** *Solution:* the navigation and buttons wrap instead of overflowing, and the Russian home page was checked in a browser; the other pages are to be read once in each language before submitting.
 - **A pinned section that must not trap people.** *Solution:* the sideways row is only pinned on large screens and for people who have not asked for reduced motion; everyone else gets a normal swipeable row.
 - **Corrupted or hand-edited saved data.** *Solution:* `sanitizeState` rebuilds the state from whatever it finds and falls back to defaults field by field (tested).
 - **A right-hand navigation on a phone.** *Solution:* a fixed panel from the `lg` breakpoint up, and below it a header with a menu button that opens a drawer from the right (closes on route change and on Escape, locks scrolling while open).
@@ -215,6 +245,8 @@ AI tools were used during development, in line with the category's rules on citi
 - **Prompts:** every prompt is quoted, with what it produced and how it was checked, in [docs/AI_USAGE.md](docs/AI_USAGE.md).
 - **How it was used:** scaffolding the project on the structure of the student's earlier projects, writing the TypeScript, drawing the scenes in code, generating the tests, translating the interface and drafting this README, from the subject text and design direction given by the student.
 - **Human oversight:** generated code is run, type-checked, linted and tested before being kept, and the pages were checked in a browser. Product decisions (the topic, the five solutions, the right-hand navigation, the reference design) were directed by the student.
+- **Reproducible process:** [docs/AI_USAGE.md](docs/AI_USAGE.md) lists the steps, tools and commands needed to rebuild the project from the same brief.
+- **Licensing and privacy:** the code is MIT-licensed, third-party content and its licences are listed below, fonts are open-licence, and the site stores only the visitor's own choices in their browser (no cookies, no analytics, no accounts).
 - **What was not AI-generated:** the statistics and their sources, the Our World in Data chart and the TED-Ed video are real external sources, credited below. There are no AI-generated images; the scenes are drawn in code.
 
 No AI-generated text, image or code in this project is presented as original human work without this disclosure.
@@ -245,7 +277,7 @@ npm run build
 
 ## Deployment
 
-A static single-page application. To host your own copy, import the repository in [Vercel](https://vercel.com) (or run `npx vercel --prod`) and deploy; `vercel.json` rewrites every route to `index.html` so direct links to inner pages work. No environment variables are needed.
+A static single-page application. The live app runs on [Vercel](https://vercel.com), connected to this repository: every push to `main` deploys automatically. To host your own copy, import the repository in Vercel (or run `npx vercel --prod`) and deploy; `vercel.json` rewrites every route to `index.html` so direct links to inner pages work. No environment variables are needed.
 
 ## Sources
 
@@ -266,4 +298,4 @@ No photographs or illustrations from other sources are used: the scenes are draw
 
 ## License
 
-[MIT](LICENSE). Open source, per Infomatrix competition rules.
+[MIT](LICENSE), © 2026 Nicole Puzur. Open source, per Infomatrix competition rules.

@@ -23,4 +23,5 @@ export const EXTERNAL = {
   unwater: 'https://www.unwater.org',
   waterOrg: 'https://water.org',
   sdg6: 'https://sdgs.un.org/goals/goal6',
+  repo: 'https://github.com/nicolepuzur/DropWise',
 } as const

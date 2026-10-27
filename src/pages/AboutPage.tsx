@@ -3,7 +3,7 @@ import { PageHeader } from '../components/PageHeader'
 import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
-import { ROUTES } from '../constants/site'
+import { EXTERNAL, ROUTES } from '../constants/site'
 import { useLanguage } from '../i18n/LanguageContext'
 
 export function AboutPage() {
@@ -48,8 +48,9 @@ export function AboutPage() {
       </Section>
 
       <Section tone="plain">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2">
           {[
+            { title: a.teamTitle, body: a.teamBody },
             { title: a.privacyTitle, body: a.privacyBody },
             { title: a.aiTitle, body: a.aiBody },
             { title: a.licenceTitle, body: a.licenceBody },
@@ -60,8 +61,11 @@ export function AboutPage() {
             </Reveal>
           ))}
         </div>
-        <Reveal className="mt-16">
-          <Pill to={ROUTES.home}>{t.common.backHome}</Pill>
+        <Reveal className="mt-16 flex flex-wrap gap-3">
+          <Pill href={EXTERNAL.repo}>{a.repoCta}</Pill>
+          <Pill to={ROUTES.home} plain>
+            {t.common.backHome}
+          </Pill>
         </Reveal>
       </Section>
     </div>
