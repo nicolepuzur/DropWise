@@ -10,13 +10,14 @@
  * weak part of the model and the page that shows it has sliders for them.
  */
 
-/** Lei per euro. National Bank of Moldova official rate, 23 September 2026: 20.1352 (rounded). Check before using. */
-export const MDL_PER_EUR = 20.14
+/** Lei per euro. National Bank of Moldova official rate, 5 November 2026: 20.1773 (XML feed of bnm.md), rounded. */
+export const MDL_PER_EUR = 20.18
 
 /**
- * Drinking-water tariff of Apa-Canal Chisinau for households, lei per m3: 14.03, up from 12.99 (press report of the
- * ANRE decision, Logos Press, 4 August 2026; the page does not say whether VAT is included or from what date the
- * tariff applies). The operator had asked for 15.55. Read the ANRE decision before relying on it.
+ * Drinking-water tariff of Apa-Canal Chisinau, lei per m3: 14.03, up from 12.99 in force; the operator had asked for
+ * 15.55 (ANRE press release on the public session of 4 August 2026, anre.md, also reported by Logos Press). The press
+ * release does not say whether VAT is included, from what date the tariff applies, or give the decision number, and
+ * it does not say the figure is specific to households. Read the decision text before relying on it.
  */
 export const WATER_TARIFF_MDL = 14.03
 
@@ -136,7 +137,7 @@ export const MARKET_PRICES: readonly MarketPrice[] = [
     what: 'Industrial pressure transmitter, 0-10 bar (Danfoss/DEVI MBS 1700 and MBS 3200)',
     price: 'EUR 165.99 and EUR 215',
     source: 'retailer listings seen in a web search (aio.lv and a second shop); the pages could not be opened to check',
-    note: 'Accuracy was not checked against a datasheet. If it is 0.3-0.5 % of full scale (a range typical of low-cost transmitters, not verified here), that is 0.3-0.5 m on 10 bar, and the 0.30 m robustness check is the realistic one.',
+    note: 'The Danfoss MBS 3200 datasheet (seen in a search result; the 0-10 bar version was not confirmed) gives an accuracy of 0.5 % of full scale typical and 1.0 % maximum: 0.5-1.0 m on 10 bar. That is noisier than the 0.30 m robustness check, where model fitting saves only 3.8 % (interval includes zero), and far noisier than the 0.10 m of the main experiment, which needs a more accurate and more expensive transmitter.',
   },
   {
     id: 'logger',

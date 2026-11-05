@@ -30,7 +30,7 @@ describe('leak economics', () => {
 
   it('converts lei to euro at the rate of the model', () => {
     expect(mdlToEur(MDL_PER_EUR)).toBeCloseTo(1, 12)
-    expect(mdlToEur(20.14 * 50)).toBeCloseTo(50, 9)
+    expect(mdlToEur(MDL_PER_EUR * 50)).toBeCloseTo(50, 9)
   })
 
   it('gives the mean leak of the benchmark (log-uniform 2-10 % of 0.25 m3/s)', () => {
