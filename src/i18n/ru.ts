@@ -14,6 +14,7 @@ export const ru: Translation = {
     leaks: 'Охотник за утечками',
     athome: 'Аудит дома',
     about: 'О проекте',
+    research: 'Исследование',
     menu: 'Меню',
     close: 'Закрыть',
     planLabel: 'Ваш домашний план',

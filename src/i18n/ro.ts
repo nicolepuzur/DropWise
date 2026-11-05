@@ -14,6 +14,7 @@ export const ro: Translation = {
     leaks: 'Vânătorul de pierderi',
     athome: 'Audit casnic',
     about: 'Despre',
+    research: 'Cercetare',
     menu: 'Meniu',
     close: 'Închide',
     planLabel: 'Planul tău de acasă',

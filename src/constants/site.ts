@@ -9,6 +9,7 @@ export const ROUTES = {
   desal: '/desalination',
   leaks: '/leaks',
   athome: '/at-home',
+  research: '/research',
   about: '/about',
 } as const
 

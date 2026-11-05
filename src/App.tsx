@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -18,6 +18,9 @@ import { ProblemPage } from './pages/ProblemPage'
 import { ReusePage } from './pages/ReusePage'
 import { SolutionPage } from './pages/SolutionPage'
 import { scrollToTop } from './utils/scroll'
+
+/** The research page carries the hydraulic simulator, so it is loaded only when someone opens it. */
+const ResearchPage = lazy(() => import('./pages/ResearchPage').then((m) => ({ default: m.ResearchPage })))
 
 /** Every page opens at its top, so a route change starts there. */
 function ScrollToTop() {
@@ -53,6 +56,14 @@ function AppShell() {
             <Route path={ROUTES.desal} element={<DesalPage />} />
             <Route path={ROUTES.leaks} element={<LeaksPage />} />
             <Route path={ROUTES.athome} element={<AtHomePage />} />
+            <Route
+              path={ROUTES.research}
+              element={
+                <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
+                  <ResearchPage />
+                </Suspense>
+              }
+            />
             <Route path={ROUTES.about} element={<AboutPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

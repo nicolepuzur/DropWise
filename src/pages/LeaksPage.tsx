@@ -207,8 +207,11 @@ export function LeaksPage() {
           <FormulaBox title={t.common.formula} lines={[l.note]} />
         </div>
 
-        <Reveal className="mt-14">
-          <Pill to={ROUTES.athome}>{t.nav.athome}</Pill>
+        <Reveal className="mt-14 flex flex-wrap gap-3">
+          <Pill to={ROUTES.research}>{t.nav.research}</Pill>
+          <Pill to={ROUTES.athome} plain>
+            {t.nav.athome}
+          </Pill>
         </Reveal>
       </Section>
     </div>

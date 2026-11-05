@@ -62,7 +62,10 @@ export function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
     { to: ROUTES.leaks, label: t.nav.leaks, index: '04' },
     { to: ROUTES.athome, label: t.nav.athome, index: '05' },
   ]
-  const other: NavItem[] = [{ to: ROUTES.about, label: t.nav.about }]
+  const other: NavItem[] = [
+    { to: ROUTES.research, label: t.nav.research },
+    { to: ROUTES.about, label: t.nav.about },
+  ]
 
   return (
     <div className="flex h-full flex-col">

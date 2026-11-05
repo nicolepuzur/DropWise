@@ -12,6 +12,7 @@ export const en = {
     leaks: 'Leak hunter',
     athome: 'Home audit',
     about: 'About',
+    research: 'Research',
     menu: 'Menu',
     close: 'Close',
     planLabel: 'Your home plan',
