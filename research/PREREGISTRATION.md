@@ -45,7 +45,7 @@ Real leaks cannot be placed on demand, so the experiment is a Monte Carlo simula
 
 ## 4. The methods
 
-All of them return a **ranked list of places to dig**, chosen from candidate places 20 map units apart along every pipe (about 167 places).
+All of them return a **ranked list of places to dig**, chosen from candidate places 20 map units apart along every pipe (170 places, see 8.1).
 
 - **M0 Random.** A random order. Shows what "no information" costs.
 - **M1 Naive threshold.** The approach of the current tool: find the sensor with the biggest pressure drop, then dig the places in order of their distance from that sensor.
@@ -85,6 +85,24 @@ For each, the reduction of dry holes of M3 and of M2 against M1 is reported with
 - A leak right next to the plant looks like a general rise in demand and cannot be found from pressure alone. This is expected to show in the subgroup "leak on the main line".
 - The dig radius is the game's, 160 m at the chosen scale.
 
-## 8. Amendments
+## 8. Implementation details and amendments
 
-*(none)*
+**8.1 Details fixed before the first benchmark run** (5 November 2026, after the four methods were written and tested on the development seed, before any run on the benchmark seed). They fill in what the sections above left open and change no hypothesis, target or decision rule.
+
+- There are **170** candidate places, not "about 167" (the number was estimated by hand in Section 4).
+- M3: the Levenberg-Marquardt damping starts at 0.01, is multiplied by 0.3 after an accepted step and by 10 after a rejected one (a rejected step still uses up an iteration). The finite-difference steps are 0.05 for the leak size (in units of the 5% reference leak) and 0.01 for the demand factor. The fit stops early when a step is smaller than 0.0001 (leak size) and 0.00001 (demand factor).
+- Ties in a ranking go to the place that comes first in the list of candidates.
+- Run time is the wall-clock time to rank the places for one scenario, in Node.js on the computer that ran the benchmark. The one-off preparation of M2 (the 170 fingerprints) is reported separately.
+
+**8.2 What the development seed showed** (40 scenarios of seed 1; this is debugging, not a result of the report).
+
+| Settings | Random | Naive (M1) | Fingerprint (M2) | Model fitting (M3) |
+|---|---|---|---|---|
+| Exact readings: no sensor error, no demand uncertainty (30 scenarios) | 8.70 | 6.13 | 0.07 | 0.00 |
+| The settings of Section 3 (40 scenarios) | 8.63 | 7.35 | 6.70 | 6.13 |
+
+Mean dry holes. With exact readings M2 and M3 find the leak almost at once, which shows that the code is correct. With the sensor error and demand uncertainty of Section 3 the four methods end up close together, so under those settings the four sensors carry little information. **The settings of Section 3 were not changed because of this.** The robustness checks of Section 6 are there to show how the result depends on them.
+
+**8.3 Amendments after the benchmark run**
+
+*(none yet)*
