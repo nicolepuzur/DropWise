@@ -41,6 +41,9 @@ export const TARGETS = {
   h2DryHoles: 2,
 } as const
 
+/** Amendment 1 (PREREGISTRATION.md, 8.3): a leak-only fit tested on a fresh seed after the main run. */
+export const AMENDMENT1 = { seed: 2028, scenarios: 500, target: 0.1 } as const
+
 /** Robustness checks (each uses SCENARIOS.sweep scenarios and changes one thing). */
 export const ROBUSTNESS = {
   noiseM: [0.03, 0.3],

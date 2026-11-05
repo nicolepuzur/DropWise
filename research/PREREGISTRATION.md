@@ -103,6 +103,18 @@ For each, the reduction of dry holes of M3 and of M2 against M1 is reported with
 
 Mean dry holes. With exact readings M2 and M3 find the leak almost at once, which shows that the code is correct. With the sensor error and demand uncertainty of Section 3 the four methods end up close together, so under those settings the four sensors carry little information. **The settings of Section 3 were not changed because of this.** The robustness checks of Section 6 are there to show how the result depends on them.
 
-**8.3 Amendments after the benchmark run**
+**8.3 Amendment 1: a new method and a new hypothesis, added after the main run and before they are tested** (5 November 2026)
 
-*(none yet)*
+*Observation (post hoc, from the robustness table of the main run).* With demand known exactly (factor 0) the fingerprint method needed fewer dry holes than model fitting (3.80 against 4.86). *Suspicion, not tested:* the fitted demand factor then absorbs sensor noise instead of an unknown demand.
+
+*New method M3b, leak-only fit.* Model fitting with the demand factor **fixed at 1**, so that only the leak size is fitted (one parameter; the same Levenberg-Marquardt damping, step and stopping rules as M3).
+
+*H4 (exploratory).* At demand uncertainty factor 0, M3b needs **at least 10% fewer dry holes** than M3. Supported = the estimate reaches 10% and the 95% interval stays above 0; partially supported = the interval is above 0 but the estimate is below 10%; not supported otherwise.
+
+*Data.* A **fresh seed (2028)**, so that the scenarios that suggested the idea are not reused: **500** scenarios at factor 0, everything else as in the main experiment (four sensors, error 0.10 m). Reported as context only, with no hypothesis: the same 500 scenarios at factor 1, where M3b is expected to be no better than M3 because the demand factor is needed there. Intervals as in Section 5 (paired bootstrap, 2,000 resamples, seed 11).
+
+Because the idea came from looking at results, H4 is **exploratory whatever the outcome**, and the abstract does not rely on it.
+
+**8.4 Amendments after the benchmark run, results**
+
+*(to be filled in after the run)*

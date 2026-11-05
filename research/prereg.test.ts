@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
-import { BOOTSTRAP_RESAMPLES, CANDIDATE_SPACING, DEMAND_UNCERTAINTY, LEAK_SHARE, MAX_DIGS, REFERENCE_HEAD_M, ROBUSTNESS, SCENARIOS, SEEDS, SENSORS, TARGETS } from './config.ts'
+import { AMENDMENT1, BOOTSTRAP_RESAMPLES, CANDIDATE_SPACING, DEMAND_UNCERTAINTY, LEAK_SHARE, MAX_DIGS, REFERENCE_HEAD_M, ROBUSTNESS, SCENARIOS, SEEDS, SENSORS, TARGETS } from './config.ts'
 
 /** The document that fixes the hypotheses must say what the code is configured to do. */
 const doc = readFileSync(new URL('./PREREGISTRATION.md', import.meta.url), 'utf8')
@@ -34,6 +34,12 @@ describe('PREREGISTRATION.md agrees with research/config.ts', () => {
   it('states the search settings', () => {
     expect(doc).toContain(`${CANDIDATE_SPACING} map units apart`)
     expect(doc).toContain(`after **${MAX_DIGS} digs**`)
+  })
+
+  it('states Amendment 1 (a fresh seed, its size and its target)', () => {
+    expect(doc).toContain(`**fresh seed (${AMENDMENT1.seed})**`)
+    expect(doc).toContain(`**${AMENDMENT1.scenarios}** scenarios at factor 0`)
+    expect(doc).toContain(`**at least ${Math.round(AMENDMENT1.target * 100)}% fewer dry holes**`)
   })
 
   it('lists the robustness checks', () => {

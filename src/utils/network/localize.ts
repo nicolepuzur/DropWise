@@ -129,6 +129,55 @@ export function createModelFitRanker(world: World, options: ModelFitOptions = MO
   }
 }
 
+/** Same fit as `fitPlace`, but the overall demand is fixed at the usual value: only the leak size is fitted. */
+function fitPlaceLeakOnly(world: World, place: PipePosition, drop: readonly number[], emitter: number, options: ModelFitOptions): number {
+  const predict = (a: number) => simulatedDrop(world, { pipe: place.pipe, at: place.t, emitter: a * emitter })
+  const residual = (p: readonly number[]) => drop.map((y, j) => y - p[j])
+  const cost = (r: readonly number[]) => r.reduce((s, v) => s + v * v, 0)
+
+  let a = 1
+  let pred = predict(a)
+  let r = residual(pred)
+  let best = cost(r)
+  let damping = 0.01
+  const stepA = 0.05
+
+  for (let iteration = 0; iteration < options.maxIterations; iteration++) {
+    const ja = predict(a + stepA).map((v, j) => (v - pred[j]) / stepA)
+    const aa = ja.reduce((s, v) => s + v * v, 0)
+    const ga = ja.reduce((s, v, j) => s + v * r[j], 0)
+    const det = aa * (1 + damping) + 1e-12
+    if (!(det > 1e-30)) break
+    const na = Math.max(0, a + ga / det)
+    const trial = predict(na)
+    const trialCost = cost(residual(trial))
+    if (trialCost < best) {
+      const small = Math.abs(na - a) < 1e-4
+      a = na
+      pred = trial
+      r = residual(pred)
+      best = trialCost
+      damping *= 0.3
+      if (small) break
+    } else {
+      damping *= 10
+    }
+  }
+  return best
+}
+
+/**
+ * M3b (Amendment 1 of the pre-registration): model fitting that does not fit the overall demand, so only the leak size
+ * is adjusted at each place. Used to test whether the demand factor absorbs sensor noise when demand is known.
+ */
+export function createLeakOnlyFitRanker(world: World, options: ModelFitOptions = MODEL_FIT_DEFAULTS): (drop: readonly number[]) => Ranking {
+  const emitter = emitterFor(options.referenceShare, options.referenceHead)
+  return (drop) => {
+    const error = world.candidates.map((c) => fitPlaceLeakOnly(world, c, drop, emitter, options))
+    return world.candidates.map((_, i) => i).sort((a, b) => error[a] - error[b]).map((i) => world.candidates[i])
+  }
+}
+
 export interface DigOutcome {
   /** Digs before the one that found the leak; `maxDigs` if it was not found. */
   dryHoles: number
