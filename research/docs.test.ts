@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import benchmark from './results/benchmark.json' with { type: 'json' }
-import { abstractHtml, annexHtml, assertVerdicts } from './docs.ts'
+import { abstractHtml, annexHtml, assertVerdicts, fmt, today, withKnownDemand } from './docs.ts'
 
 const file = (name: string) => readFileSync(new URL(`../docs/moldsef/${name}`, import.meta.url), 'utf8')
 
@@ -29,6 +29,22 @@ describe('docs/moldsef are built from the benchmark', () => {
     for (const id of ['random', 'naive', 'fingerprint', 'fit'] as const) {
       expect(abstract).toContain(benchmark.main.methods[id].meanDryHoles.estimate.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
     }
+  })
+
+  it('has a pitch whose numbers are the numbers of the benchmark and the cost model', () => {
+    const pitch = file('../PITCH.md')
+    const known = benchmark.robustness.find((c) => c.condition.demandFactor === 0)!
+    expect(pitch).toContain(`${(benchmark.hypotheses.h1.reduction.estimate * 100).toFixed(1)}%`)
+    expect(pitch).toContain(`${Math.round(known.reductionVersusNaive.fingerprint.estimate * 100)}%`)
+    expect(pitch).toContain(`about ${Math.round(withKnownDemand.fingerprint.paybackMonths)} months`)
+    expect(pitch).toContain(`about ${Math.round(today.dryHoleCostEur / 10) * 10} euro`)
+    expect(pitch).toContain(`${fmt(today.waterLostM3PerDay)} cubic metres`)
+  })
+
+  it('has a poster built from the same data', () => {
+    const poster = readFileSync(new URL('../docs/poster/poster-A0.html', import.meta.url), 'utf8')
+    expect(poster).toContain('@page { size: 841mm 1189mm; margin: 0; }')
+    expect(poster).toContain(`${(benchmark.hypotheses.h1.reduction.estimate * 100).toFixed(1)}%`)
   })
 
   it('uses Times New Roman at 12 pt and stays small enough to upload', () => {

@@ -67,7 +67,7 @@ Trigger: the supervisor's evaluation of Submission #1 (score 62%, 6/10). It aske
 | Method | `node research/benchmark.ts`: 1,000 random leaks (main experiment) and six robustness conditions of 300 leaks each; paired bootstrap, 2,000 resamples. 11.4 minutes on an Intel i7-9700K |
 | Result | Mean dry holes: random 8.47, naive 6.91, fingerprints 6.26, model fitting 5.97. **H1 partially supported**: model fitting −13.6% (95% interval 10.0–17.2%), target 50%. **H2 partially supported**: fingerprints 8,035 × faster, but 3.5 points less often within three digs, upper bound 6.6 > 5. Model fitting did not find 38.8% of the leaks within 10 digs |
 | What decides the result | When demand is known exactly the saving against the naive rule is 40.8% for fingerprints and 24.4% for model fitting; with twice the uncertainty it is 0.7% and 6.6%. Sensor error 0.03 m: 21.2%; 0.30 m: 3.8% (interval includes zero) for model fitting |
-| Surprises | (1) The targets were missed by a wide margin; they were **not** adjusted afterwards. (2) With demand known, the simple fingerprint method beat model fitting (3.80 against 4.86); I suspect the fitted demand factor absorbs sensor noise but this is **not tested**. (3) A leak on the main line next to the plant is the hardest case: the naive rule needs 9.4 dry holes, worse than random order |
+| Surprises | (1) The targets were missed by a wide margin; they were **not** adjusted afterwards. (2) With demand known, the simple fingerprint method beat model fitting (3.80 against 4.86); I suspected that the fitted demand factor absorbs sensor noise, and tested it afterwards (entry 11). (3) A leak on the main line next to the plant is the hardest case: the naive rule needs 9.4 dry holes, worse than random order |
 | AI assistance | Claude Code ran the benchmark and wrote the summary; the numbers are in `research/results/benchmark.json` |
 | Student check | ☐ re-ran `node research/benchmark.ts` and got the same numbers (only timing fields change) ☐ opened `benchmark.json` |
 
@@ -77,13 +77,13 @@ Trigger: the supervisor's evaluation of Submission #1 (score 62%, 6/10). It aske
 |---|---|
 | Objective | Cost per dry hole, savings, payback, with local tariffs and a comparison with commercial equipment |
 | Method | `src/utils/leakEconomics.ts`. Value of one dry hole = cost of a dig + (days per dig × water the leak loses per day × tariff × share). Saving of a method = dry holes avoided × that value. Payback = system cost ÷ (saving per year − running costs) |
-| Sourced | Water tariff 14.03 lei/m³ for households (press report of the 2026 ANRE decision, Logos Press, 4 August 2026; the page says neither whether VAT is included nor from when it applies; the operator asked for 15.55); losses of 25.9% of the water taken in were accepted in the same calculation; EUR/MDL 20.1352 (BNM, 23 September 2026); satellite survey price (about US$470 per mile, North Kingstown report as quoted in a web search); acoustic logger kits (US retailers, a 2018 county tender) |
-| **Not verified** | The pressure transmitter price (€165.99 and €215, retail listings): the page returned HTTP 403 and was not opened; no datasheet accuracy was checked. A 2023 Apă-Canal presentation on losses could not be read (a PDF without extractable text) |
+| Sourced | Water tariff 14.03 lei/m³ (12.99 before; the operator asked for 15.55) in the ANRE press release on the public session of 4 August 2026 (anre.md), also reported by Logos Press; the press release gives no decision number, no date of effect and no VAT status, and does not say the figure is for households only; losses of 25.9% of the water taken in were accepted in the same calculation (Logos Press); EUR/MDL 20.1773 (BNM official rate, 5 November 2026, read from the bank's XML feed); Danfoss MBS 3200 accuracy 0.5% FS typical, 1.0% FS maximum (data sheet as quoted in a search result); satellite survey price (about US$470 per mile, North Kingstown report as quoted in a web search); acoustic logger kits (US retailers, a 2018 county tender) |
+| **Not verified** | The pressure transmitter price (€165.99 and €215, retail listings): the page returned HTTP 403 and was not opened, and the 0–10 bar version's accuracy was not confirmed. A 2023 Apă-Canal presentation on losses could not be read (a PDF without extractable text). The ANRE decision text itself was not found |
 | **Assumptions without a source** | Cost of one dry hole (€800), days per dig (0.5), share of the tariff a saved m³ is worth (50%), large leaks per year (4), cost of the sensor system (€12,000), running cost (€1,500 a year). These are sliders on the Research page and are the weakest part of the estimate |
-| Result | At the default assumptions one dry hole costs €981 (19,749 lei); model fitting pays back a €12,000 system in 66 months and fingerprints in 138 months at today's uncertainty, and in 31 and 16 months if demand were known |
+| Result | At the default assumptions one dry hole costs €980 (19,781 lei); model fitting pays back a €12,000 system in 66 months and fingerprints in 138 months at today's uncertainty, and in 31 and 16 months if demand were known |
 | Incident | While looking for the 2023 presentation the browser was pointed at a link that is a file download, which opened a save dialog on the student's computer; nothing was saved or used |
 | AI assistance | Claude Code searched the sources and wrote the model and its 12 tests; every price and tariff above must be re-checked by the student |
-| Student check | ☐ opened the ANRE decision and checked the tariff, its date and VAT ☐ checked the BNM rate on the day ☐ checked one transmitter datasheet ☐ asked a local contractor what a dig costs |
+| Student check | ☐ found the ANRE decision text and checked its number, date of effect and VAT ☐ checked the BNM rate on the day ☐ opened a 0–10 bar transmitter datasheet ☐ asked a local contractor what a dig costs |
 
 ### Entry 10 — Research page and documents
 
@@ -91,9 +91,30 @@ Trigger: the supervisor's evaluation of Submission #1 (score 62%, 6/10). It aske
 |---|---|
 | Objective | Put the hypotheses, the benchmark and the cost model on the site, and write the MoldSEF documents |
 | Method | New page `/research` in English, Romanian and Russian: verdicts, benchmark table, robustness table, an interactive leak hunt that runs the same methods in the browser, and the cost calculator with sliders. `research/docs.ts` builds `docs/moldsef/abstract.html` (2 pages, Times New Roman 12 pt) and `visual-annex.html` (1 page) from `benchmark.json`, so no number is typed by hand; a test fails if they drift apart |
-| Evidence | 121 tests pass; `tsc`, `vite build` clean; the page was run in English, Romanian and Russian at phone size with no sideways scrolling and no console errors; abstract PDF 129 KB, 2 pages; annex PDF 96 KB, 1 page |
+| Evidence | 121 tests pass; `tsc`, `vite build` clean; the page was run in English, Romanian and Russian at phone size with no sideways scrolling and no console errors; abstract PDF 130 KB, 2 pages; annex PDF 96 KB, 1 page |
 | AI assistance | Claude Code wrote the page, the translations and the document generator. The Romanian and Russian texts have **not** been read by a fluent reader |
 | Student check | ☐ read the Research page in the three languages ☐ checked the abstract against the official MoldSEF Template A |
+
+### Entry 11 — Amendment 1: is the fitted demand factor absorbing noise? (commit `7c573e2` before the run)
+
+| Item | Detail |
+|---|---|
+| Objective | Test the suspicion from entry 8 without reusing the scenarios that suggested it |
+| Method | The amendment (`PREREGISTRATION.md` 8.3) and the new method M3b (model fitting with the demand factor fixed at 1) were committed **before** the run. H4: at demand factor 0, M3b needs ≥ 10% fewer dry holes than M3. Fresh seed 2028, 500 scenarios; the same 500 at factor 1 as context. `node research/amendment1.ts` |
+| Result | Factor 0: naive 6.45, fingerprints 3.69, M3 4.83, M3b 3.67. **H4 supported (exploratory):** M3b needs 24.0% fewer dry holes than M3 (95% interval 18.7–29.0%) and equals fingerprints (difference 0.3%, interval −1.9 to 2.5%). Factor 1: M3b is worse than M3 (−14.3%, interval −21.8 to −7.8%), as expected |
+| Reading | The demand factor absorbs sensor noise when demand is known and helps only when demand is really uncertain. Exploratory because the idea came from looking at results |
+| AI assistance | Claude Code wrote the method, the script and the tests |
+| Student check | ☐ read `fitPlaceLeakOnly` in `localize.ts` and explain why it should help at factor 0 and hurt at factor 1 ☐ re-ran `node research/amendment1.ts` (about 10 minutes) |
+
+### Entry 12 — Sources re-checked, poster, pitch, README as PDF
+
+| Item | Detail |
+|---|---|
+| Sources | ANRE's own press release (4 August 2026) confirms the tariff 14.03 lei/m³ (12.99 before, 15.55 asked); no decision number, date of effect or VAT status. BNM official rate for 5 November 2026: 20.1773 lei per euro (XML feed). Danfoss MBS 3200 data sheet, as quoted in a search result: accuracy 0.5% FS typical, 1.0% FS maximum. The site, the abstract and the poster were updated (rate 20.18, tariff source, transmitter noise) |
+| Still not verified | The shop price of the transmitter (HTTP 403); the Apă-Canal 2023 presentation (not retried: it is about regulation and finance, not leak data); the ANRE decision text |
+| Deliverables | `docs/poster/poster-A0.pdf` (A0 vertical, one page; the two QR frames are empty because no QR library is installed), `docs/PITCH.md` (3-minute script, demo steps, 13 questions), `docs/DropWise-documentation.pdf` rebuilt from the README with `scripts/makeReadmePdf.ts` |
+| AI assistance | Claude Code did all of it; the student must read the pitch and make it her own |
+| Student check | ☐ added QR codes to the poster ☐ practised the pitch with a timer ☐ opened the README PDF and looked through it |
 
 ## C. Human verification of AI-assisted code (to be completed by the student)
 
@@ -120,7 +141,7 @@ node research/makeDocs.ts   # rebuilds the abstract and the annex from benchmark
 
 | Planned | Why | Hypothesis / success criterion |
 |---|---|---|
-| Test the suspicion that the fitted demand factor absorbs noise: model fitting with the demand factor switched off when demand is known | It would explain why fingerprints beat model fitting at ×0 | Model fitting without the demand factor is no worse than fingerprints at ×0 (to be pre-registered as an amendment before it is run) |
+| Replace the fitted demand factor by something in between (a prior on the factor, so it can move a little but not absorb noise) | Entry 11 shows the factor is useful only when demand is uncertain | A method that is never worse than both M3 and M3b (to be pre-registered before it is run) |
 | Add a flow meter at the plant | The total supply carries information about leak size and demand | Dry holes fall by at least 20% at the main setting |
 | Several leaks at once | The game has six, the benchmark one | The methods keep their ranking |
 | Calibrate on a real Moldovan district | The model is assumed exact | Needs data from the operator |
