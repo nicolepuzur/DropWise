@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "generatedAt": "2026-11-05T19:49:19.908Z",
+    "seed": 2028
+  },
+  "h4": {
+    "target": 0.1,
+    "reduction": {
+      "estimate": 0.2399669011170873,
+      "low": 0.18714314864716952,
+      "high": 0.2902552653221768
+    },
+    "verdict": "supported"
+  },
+  "demandKnown": {
+    "demandFactor": 0,
+    "scenarios": 500,
+    "meanDryHoles": {
+      "naive": {
+        "estimate": 6.454,
+        "low": 6.1,
+        "high": 6.8001
+      },
+      "fingerprint": {
+        "estimate": 3.686,
+        "low": 3.35795,
+        "high": 4.026
+      },
+      "fit": {
+        "estimate": 4.834,
+        "low": 4.4859,
+        "high": 5.188
+      },
+      "leakOnly": {
+        "estimate": 3.674,
+        "low": 3.328,
+        "high": 4.02605
+      }
+    },
+    "leakOnlyVersusFit": {
+      "estimate": 0.2399669011170873,
+      "low": 0.18714314864716952,
+      "high": 0.2902552653221768
+    },
+    "leakOnlyVersusFingerprint": {
+      "estimate": 0.0032555615843733454,
+      "low": -0.018532498409910066,
+      "high": 0.024606310737765924
+    },
+    "fitVersusNaive": {
+      "estimate": 0.2510071273628758,
+      "low": 0.1963258459418541,
+      "high": 0.3001896857767088
+    }
+  },
+  "mainSettingsContext": {
+    "demandFactor": 1,
+    "scenarios": 500,
+    "meanDryHoles": {
+      "naive": {
+        "estimate": 6.798,
+        "low": 6.45395,
+        "high": 7.14
+      },
+      "fingerprint": {
+        "estimate": 6.358,
+        "low": 6.01195,
+        "high": 6.702
+      },
+      "fit": {
+        "estimate": 5.898,
+        "low": 5.55395,
+        "high": 6.22805
+      },
+      "leakOnly": {
+        "estimate": 6.742,
+        "low": 6.408,
+        "high": 7.086
+      }
+    },
+    "leakOnlyVersusFit": {
+      "estimate": -0.1430993557138014,
+      "low": -0.2184086581541218,
+      "high": -0.07796252803303798
+    },
+    "leakOnlyVersusFingerprint": {
+      "estimate": -0.0603963510537906,
+      "low": -0.10032312637542828,
+      "high": -0.026665748393021077
+    },
+    "fitVersusNaive": {
+      "estimate": 0.1323918799646956,
+      "low": 0.0833290327337068,
+      "high": 0.18136701280008222
+    }
+  }
+}

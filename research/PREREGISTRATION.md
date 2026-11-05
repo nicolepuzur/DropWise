@@ -115,6 +115,13 @@ Mean dry holes. With exact readings M2 and M3 find the leak almost at once, whic
 
 Because the idea came from looking at results, H4 is **exploratory whatever the outcome**, and the abstract does not rely on it.
 
-**8.4 Amendments after the benchmark run, results**
+**8.4 Result of Amendment 1** (`node research/amendment1.ts`, seed 2028, 500 scenarios per condition, results in `research/results/amendment-1.json`)
 
-*(to be filled in after the run)*
+| Mean dry holes | Naive | Fingerprint | Model fitting (M3) | Leak-only fit (M3b) |
+|---|---|---|---|---|
+| Demand factor 0 (the test of H4) | 6.45 | 3.69 | 4.83 | 3.67 |
+| Demand factor 1 (context only) | 6.80 | 6.36 | 5.90 | 6.74 |
+
+- **H4 is supported** (exploratory): at factor 0 the leak-only fit needs **24.0% fewer dry holes than M3** (95% interval 18.7–29.0%), above the 10% target, with the interval above zero. It is as good as fingerprints (0.3% difference, interval −1.9 to 2.5%).
+- At factor 1, as expected, the leak-only fit is worse than M3 (−14.3%, interval −21.8 to −7.8%): there the demand factor is needed.
+- **Reading.** The fitted demand factor does absorb sensor noise when demand is known exactly; it helps only when demand is really uncertain. This is a post hoc idea tested on new data; it is exploratory whatever the outcome, and the abstract states it as such.
