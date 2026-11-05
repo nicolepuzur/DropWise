@@ -37,7 +37,7 @@ The jury scores nine criteria from 1 to 5. This is where the project answers eac
 | Originality / creativity | Each of the five solutions in the brief becomes a small model you can change; the planet is poured into 100 litres, with lakes and rivers drawn at their true size; the leak hunter is a game; the six hero scenes are drawn in code |
 | Practicality | A real problem (SDG 6) with cited numbers; every tool ends in litres a person, farm or city could save; no account, no install, works on a phone |
 | UI / UX | A full-screen slideshow, navigation on the right, three languages, a skip link, visible focus, keyboard control of the slideshow, and no forced motion for people who ask for less |
-| Functionality | 52 automated tests, inputs clamped and saved data re-validated, every page checked automatically in English, Romanian and Russian at desktop and phone size (layout and console errors) and by eye on the main pages; limits of the models are written next to each tool |
+| Functionality | 121 automated tests, inputs clamped and saved data re-validated, every page checked automatically in English, Romanian and Russian at desktop and phone size (layout and console errors) and by eye on the main pages; limits of the models are written next to each tool |
 | Technical skills | React 19, TypeScript and Tailwind v4; pure, tested calculation modules; a custom i18n layer with a test that keeps three languages in step; SVG scenes from seeded random numbers; a pinned horizontal scroll row; validated local storage |
 | Oral presentation | A 15-minute outline with the demo flow and likely questions is in [docs/SUBMISSION.md](docs/SUBMISSION.md) |
 | Documentation | This README and its PDF, the [design plan](docs/design/plan.svg), the [AI usage log](docs/AI_USAGE.md), screenshots, sources and a licence table |
@@ -161,6 +161,7 @@ The structure follows the student's earlier projects (ClimaWatch, WasteLand and 
 | **27 Oct 2026** | **Interface and content.** English, Romanian and Russian translations (with a test that they stay in step), the right-hand navigation, the six-scene hero slideshow and the pinned solution row, and every page. |
 | **27–28 Oct 2026** | **Checks.** The main pages were looked at in a browser, then every page was run in English, Romanian and Russian at desktop and phone size with an automated layout check (no sideways scrolling, no text outside its box, no console errors); the fixes are listed in [Problems faced](#6-problems-faced--how-they-were-solved). |
 | **27 Oct 2026** | **Publication and documentation.** Public GitHub repository on the student's account, live deployment on Vercel, the team credited on the site, a design-plan sketch, this README as a PDF, and the AI usage log extended with a reproducible process. The README was checked against the official regulations, category page and rubric. |
+| **5 Nov 2026** | **Research upgrade** after the supervisor's evaluation ([section 8](#8-research-upgrade-locating-a-leak-from-pressure-sensors-5-november-2026)): a hydraulic simulator of the pipe network, a pre-registration committed before any method existed, four leak-finding methods, a 1,000-leak benchmark (both hypotheses partially supported), a cost model in lei and euro, the Research page, the MoldSEF abstract, visual annex and logbook. Tests grew from 52 to 121. |
 
 ---
 
@@ -208,12 +209,15 @@ Browser (React, no server of ours)
 src/
   components/      Header, Sidebar, SidebarBody, HeroSlideshow, SolutionRail, ImageBand, EarthWater, ...
     scenes/        Scene.tsx — the six animated SVG scenes
-  pages/           Home, Problem, Solution, Irrigation, Reuse, Desal, Leaks, AtHome, About
+  pages/           Home, Problem, Solution, Irrigation, Reuse, Desal, Leaks, AtHome, Research, About
   context/         WaterProvider (shared state)
   hooks/           useCountUp, useInView, useMediaQuery, useScrolled
-  i18n/            en / ro / ru translations + language context
-  utils/           earth, irrigation, reuse, desal, leaks, home, format, storage, scroll (+ tests)
+  i18n/            en / ro / ru translations + language context + the text of the Research page
+  utils/           earth, irrigation, reuse, desal, leaks, home, leakEconomics, format, storage, scroll (+ tests)
+    network/       graph, hydraulics (the simulator), scenario, localize (the four methods), crew, random (+ tests)
   constants/       Routes, external links
+research/          PREREGISTRATION.md, config, benchmark, stats, docs builder (+ tests); results/benchmark.json
+docs/moldsef/      abstract and visual annex (HTML + PDF), logbook
 ```
 
 ---
@@ -248,10 +252,48 @@ AI tools were used during development, in line with the category's rules on citi
 - **How it was used:** scaffolding the project on the structure of the student's earlier projects, writing the TypeScript, drawing the scenes in code, generating the tests, translating the interface and drafting this README, from the subject text and design direction given by the student.
 - **Human oversight:** generated code is run, type-checked, linted and tested before being kept, and the pages were checked in a browser. Product decisions (the topic, the five solutions, the right-hand navigation, the reference design) were directed by the student.
 - **Reproducible process:** [docs/AI_USAGE.md](docs/AI_USAGE.md) lists the steps, tools and commands needed to rebuild the project from the same brief.
+- **Research upgrade (5 November 2026):** the hydraulic model, the four leak-finding methods, the benchmark, the cost model, the Research page and the MoldSEF documents ([section 8](#8-research-upgrade-locating-a-leak-from-pressure-sensors-5-november-2026)) were written by Claude Code in a session whose prompts were typed by a classmate helping the student. The results are reported as they came out, the targets were not changed after the run, and what could not be verified is listed in [docs/AI_USAGE.md](docs/AI_USAGE.md). The student's own checks are still to be done and are listed there.
 - **Licensing and privacy:** the code is MIT-licensed, third-party content and its licences are listed below, fonts are open-licence, and the site stores only the visitor's own choices in their browser (no cookies, no analytics, no accounts).
 - **What was not AI-generated:** the statistics and their sources, the Our World in Data chart and the TED-Ed video are real external sources, credited below. There are no AI-generated images; the scenes are drawn in code.
 
 No AI-generated text, image or code in this project is presented as original human work without this disclosure.
+
+---
+
+## 8. Research Upgrade: Locating a Leak from Pressure Sensors (5 November 2026)
+
+The supervisor's evaluation of Submission #1 (62%, 6/10) asked for a testable hypothesis, a benchmark of two or three algorithms over at least 100 runs, an economic analysis in lei and euro, and the MoldSEF documents. The leak hunter was the natural place to do it: it already had a pipe network, sensors and "dry holes".
+
+**The question.** If a leak opens in a water network and only a few pressure sensors can see it, how many wasted digs does a crew need before it finds the leak, and does a hydraulic model of the network make that number smaller?
+
+**What was built** (all in the repository, all tested):
+
+- `src/utils/network/`: the drawn pipes as a graph (14 junctions, 19 pipes, 6 loops, 13.4 km), a steady-state hydraulic simulator (Hazen-Williams head loss, the Global Gradient Algorithm of Todini and Pilati, 1988; pressure-dependent leaks), random leak scenarios with hidden demand uncertainty and sensor error, and four ways of choosing where to dig: random order, a naive threshold, fingerprint matching, and model fitting.
+- `research/PREREGISTRATION.md`: the hypotheses, the decision rules, the simulated world and the limits, **written and committed before any method existed**. `research/benchmark.ts` runs 1,000 random leaks and six robustness checks and writes `research/results/benchmark.json`.
+- `src/utils/leakEconomics.ts`: the cost model in lei and euro (tariff of Apă-Canal Chișinău, BNM rate, equipment prices with their sources).
+- The **Research page** (`/research`, in English, Romanian and Russian): the verdicts, the benchmark, an interactive leak hunt that runs the same methods in the browser, and a cost calculator with sliders.
+- `docs/moldsef/`: the 2-page abstract and the 1-page visual annex (built from the results by `research/docs.ts`, so no number is typed by hand) and the laboratory logbook.
+
+**Result, as it came out.**
+
+| Method | Dry holes before the leak is found (mean, 95% interval) |
+|---|---|
+| Random order | 8.47 (8.30–8.66) |
+| Naive threshold | 6.91 (6.67–7.14) |
+| Fingerprint matching | 6.26 (6.00–6.49) |
+| Model fitting | 5.97 (5.73–6.21) |
+
+- **H1 (model fitting needs at least 50% fewer dry holes than the naive rule): partially supported.** The reduction is 13.6% (95% interval 10.0–17.2%): real, but far from the target.
+- **H2 (fingerprints within 5 points of model fitting and at least 10 times faster): partially supported.** They are 8,035 times faster, but 3.5 points less often within three digs, with an upper bound of 6.6 points.
+- **What decides the result is how well demand is known, not the algorithm.** With demand known exactly the saving against the naive rule is 40.8% for fingerprints and 24.4% for model fitting; with twice the uncertainty it is 0.7% and 6.6%. At the assumed costs, fingerprints would pay back a €12,000 system in about 16 months if demand were known (for example from smart meters), and in about 138 months at today's uncertainty.
+- The targets were missed by a wide margin and **were not adjusted afterwards**. A debugging run on a separate seed had already shown the methods barely beating random order under the registered noise; this is written in section 8 of the pre-registration, and the settings were not changed.
+
+**Limits.** A simulation of a drawn network, not a real district; the network model is assumed exact; one leak at a time; steady flow; the cost of a dig, the number of leaks a year and the price of the system are assumptions without a source. The tariff (14.03 lei/m³) is from a press report of the 2026 ANRE decision and should be checked against the decision itself. Everything that could not be verified is listed in [docs/AI_USAGE.md](docs/AI_USAGE.md) and the logbook.
+
+```bash
+node research/benchmark.ts   # about 12 minutes; writes research/results/benchmark.json
+node research/makeDocs.ts    # rebuilds the abstract and the visual annex from the results
+```
 
 ---
 
@@ -270,7 +312,7 @@ No API key or `.env` file is needed.
 npm test
 ```
 
-52 tests cover Earth's water (the shares add up to 100, dots are handed out exactly, 7 mL of lakes and rivers), the irrigation lab (efficiencies, the third saved by drip), the reuse loop (wastewater, split between reused and released), the desalination sizer (energy, panels, brine, bad input), the leak hunter (every leak is on a pipe, digging, sensor hints), the home audit (every action and its caps), number formatting, the validation of saved data, and a check that the English, Romanian and Russian texts have the same keys, list lengths and placeholders.
+121 tests cover Earth's water (the shares add up to 100, dots are handed out exactly, 7 mL of lakes and rivers), the irrigation lab (efficiencies, the third saved by drip), the reuse loop (wastewater, split between reused and released), the desalination sizer (energy, panels, brine, bad input), the leak hunter (every leak is on a pipe, digging, sensor hints), the home audit (every action and its caps), number formatting, the validation of saved data, and a check that the English, Romanian and Russian texts have the same keys, list lengths and placeholders. The research work adds tests for the hydraulic model (mass balance at every junction, the head-loss law in every pipe, single and parallel pipes, leaks), the four leak-finding methods (on a development seed only), the bootstrap and the decision rules, the cost model, a check that the pre-registration document agrees with its configuration file, and checks that the abstract and the annex are exactly what is built from `benchmark.json`.
 
 ```bash
 npm run lint
@@ -283,7 +325,7 @@ A static single-page application. The live app runs on [Vercel](https://vercel.c
 
 ## Sources
 
-WHO/UNICEF Joint Monitoring Programme, *Progress on household drinking water, sanitation and hygiene 2000–2024* (2025, washdata.org); USGS Water Science School, *Where is Earth's water?* (usgs.gov); FAO AQUASTAT and irrigation guidance (fao.org); Our World in Data, *Agricultural water as a share of total water withdrawals* (ourworldindata.org); Liemberger & Wyatt, *Quantifying the global non-revenue water problem*, Water Supply (2019); US EPA WaterSense, *Fix a Leak Week* (epa.gov); Elimelech & Phillip, *The future of seawater desalination*, Science (2011); United Nations University, global brine production from desalination (2019); European Commission, water reuse (environment.ec.europa.eu); Israel Water Authority and PUB Singapore (reported figures); Project Drawdown, farm irrigation efficiency (drawdown.org); United Nations Sustainable Development Goal 6 (sdgs.un.org/goals/goal6); TED-Ed, Christiana Z. Peppard, *Fresh water scarcity: an introduction to the problem*.
+WHO/UNICEF Joint Monitoring Programme, *Progress on household drinking water, sanitation and hygiene 2000–2024* (2025, washdata.org); USGS Water Science School, *Where is Earth's water?* (usgs.gov); FAO AQUASTAT and irrigation guidance (fao.org); Our World in Data, *Agricultural water as a share of total water withdrawals* (ourworldindata.org); Liemberger & Wyatt, *Quantifying the global non-revenue water problem*, Water Supply (2019); US EPA WaterSense, *Fix a Leak Week* (epa.gov); Elimelech & Phillip, *The future of seawater desalination*, Science (2011); United Nations University, global brine production from desalination (2019); European Commission, water reuse (environment.ec.europa.eu); Israel Water Authority and PUB Singapore (reported figures); Project Drawdown, farm irrigation efficiency (drawdown.org); United Nations Sustainable Development Goal 6 (sdgs.un.org/goals/goal6); TED-Ed, Christiana Z. Peppard, *Fresh water scarcity: an introduction to the problem*. For the research upgrade: Todini & Pilati, *A gradient algorithm for the analysis of pipe networks*, in Coulbeck & Orr (eds), *Computer Applications in Water Supply*, vol. 1 (1988; sources name the publisher differently); Pérez et al., *Leak localization in water networks: a model-based methodology using pressure sensors applied to a real network in Barcelona*, IEEE Control Systems Magazine 34(4), 24–36 (2014); Pérez et al., *Methodology for leakage isolation using pressure sensitivity analysis in water distribution networks*, Control Engineering Practice 19(10), 1157–1167 (2011); Logos Press, *Tarifele la apă și canalizare cresc pentru locuitorii municipiului Chișinău* (4 August 2026, on the ANRE decision; not yet checked against the decision); National Bank of Moldova, official EUR/MDL rate (23 September 2026); equipment prices from retailer and tender listings seen in web searches (see the Research page; several pages could not be opened).
 
 ## Third-party content & licences
 

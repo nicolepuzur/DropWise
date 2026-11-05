@@ -43,7 +43,23 @@ The student's prompts, as typed (spelling kept):
    >
    > TEACHER : AZAMT JAYUSH
 
-Prompts that only dealt with which GitHub account to use are left out (account administration, not project content). The supervisor's name is written "Azamat Jayush" in the documentation, as in the student's earlier projects.
+**Research upgrade, 5 November 2026.** The following prompts were typed by a classmate who is helping the student (the student asked for help). Their Romanian is kept as typed, with an English translation in brackets. The supervisor's evaluation of Submission #1 (the e-mail, as eight screenshots) was the brief.
+
+7. > hai acum la al lui Nicole stai sa ma logez pe Git si iti trimit si cerintele ei
+   >
+   > [Translation: "now on to Nicole's; wait while I log in to Git and I'll send you her requirements too"]
+
+8. > Il invata ea ma rugat sa o ajut ea nu se pricepe. Eu nu tiam trimis toate cerintele?
+   >
+   > [Translation: "She will learn it, she asked me to help, she doesn't know much. Didn't I send you all the requirements?"]
+
+9. > Da, commit
+   >
+   > [Translation: "Yes, commit"; typed twice, the second time as "Da, commit și rulează", "Yes, commit and run it"]
+
+The choice between the two upgrades the supervisor suggested (leaks or irrigation) was made by the AI and proposed in the session; the classmate went ahead with it. The targets of the two hypotheses (50%, 5 points, 10 times) are the AI's proposal, written into the pre-registration before any method was run.
+
+Prompts that only dealt with which GitHub account to use, or with the wording of this log, are left out (not project content). The supervisor's name is written "Azamat Jayush" in the documentation, as in the student's earlier projects.
 
 ## What the AI did with them
 
@@ -55,6 +71,7 @@ Prompts that only dealt with which GitHub account to use are left out (account a
 - Kept the project in its own folder, apart from the student's other projects, as the second prompt asked.
 - Published the code to the student's own GitHub account (`nicolepuzur`), after she signed in herself in the terminal. The Vercel deployment was done by the student in her own Vercel account.
 - Read the official Infomatrix regulations, the Software Development page and the evaluation rubric, and brought the documentation in line with them: the checklist and the table for the nine judging criteria in the README, the team credit on the About page, a design-plan sketch, a PDF copy of the documentation, this log, and `docs/SUBMISSION.md`.
+- **Research upgrade (5 November 2026), after the supervisor's evaluation (62%, 6/10).** Built a hydraulic model of the leak hunter's pipe network (`src/utils/network`), wrote a pre-registration (`research/PREREGISTRATION.md`) before any method existed, wrote four leak-finding methods and a benchmark over 1,000 random leaks (`research/benchmark.ts`), a cost model in lei and euro (`src/utils/leakEconomics.ts`), a Research page in three languages with an interactive leak hunt and a cost calculator, the MoldSEF abstract and visual annex (generated from the results by `research/docs.ts`) and a laboratory logbook (`docs/moldsef/logbook.md`). The results are reported as they came out (both hypotheses only partially supported); the registered settings were not changed after a debugging run showed the methods barely beating random order.
 
 ## What was checked, and what is left for the student
 
@@ -67,7 +84,17 @@ These checks were run by the AI assistant, with web look-ups, tests and a browse
 - Every calculation is a small function with unit tests (52 tests). The pages were run in a browser: the main pages were looked at by eye, and then all nine pages plus the "not found" page were run in English, Romanian and Russian, at desktop and phone size, with an automated layout check (no sideways scrolling, no text outside its box, no console errors). That check found four layout problems, which were fixed (see the README, *Problems faced*). The check script is a one-off and is not part of the repository.
 - The English, Romanian and Russian texts are checked by a test for identical keys, list lengths and placeholders. A fluent reader should still read the Romanian and Russian once.
 
+**Checks run for the research upgrade (5 November 2026)**, also by the AI assistant and not a substitute for the student's own: 121 tests pass (the hydraulic model against the Hazen-Williams law and mass balance; the methods on a development seed; the cost model; the pre-registration against its configuration file; the abstract and annex against `benchmark.json`); `tsc -b`, `vite build` and `oxlint` are clean (one older warning in `LanguageContext.tsx`); the Research page was opened in a browser in English, Romanian and Russian at phone size with no sideways scrolling and no console errors; the abstract PDF has 2 pages (129 KB, Times New Roman 12 pt) and the visual annex PDF 1 page (96 KB).
+
+**What could not be checked** and is labelled as such on the site and in the logbook: the pressure transmitter price (the shop page could not be opened), its accuracy (no datasheet was read), a 2023 Apă-Canal Chișinău presentation (a PDF without extractable text), the exact date and VAT status of the 14.03 lei/m³ tariff, and the bibliographic details of Todini and Pilati (1988), where sources name the publisher differently. The cost of a dig, the number of leaks per year and the price of the sensor system are assumptions without a source.
+
 ### Still for the student to do
+
+- Read `docs/moldsef/logbook.md`, run the commands in it, and tick its checklist only for what you have really done.
+- Read `research/PREREGISTRATION.md` and be able to explain the two hypotheses, why the results are "partially supported", and why the settings were not changed.
+- Read `src/utils/network/hydraulics.ts` and `localize.ts`, and be able to explain in your own words one iteration of the Global Gradient Algorithm and the difference between fingerprint matching and model fitting.
+- Open the ANRE decision on the tariff, the BNM rate and one equipment price, and confirm them; look up the papers in the abstract's reference list.
+- Ask the supervisor about the team and role rules (one or two students) before submitting.
 
 - Read every page in English, Romanian and Russian, and change anything that does not sound right. The layout was checked automatically, but no fluent reader has proof-read the Romanian or Russian text.
 - Re-open the sources behind the key statistics, and the Singapore figure, before submitting.

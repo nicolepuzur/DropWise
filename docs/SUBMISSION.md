@@ -17,10 +17,25 @@ Everything here comes from the official pages at [infomatrix.ro](https://www.inf
 | Finals | Bucharest, **27–31 May 2027**. Each team gets **15 minutes in total, including questions**, plus a booth for posters and a demo. |
 | Country partners | The FAQ says that if your country has an Infomatrix partner, only projects verified by that partner are accepted. **Ask the supervisor to check this first.** |
 
+## What the supervisor's research track asks for
+
+From the supervisor's evaluation of Submission #1 (5 November 2026). These come **on top of** the Infomatrix rules above and come from the supervisor, not from infomatrix.ro, so confirm them with him.
+
+| | |
+|---|---|
+| Science | A testable hypothesis ("if we use method X, metric Y improves by Z% against a baseline") and a benchmark of 2–3 algorithms over **N ≥ 100** runs, with accuracy, false-positive rate (dry holes) and latency → [research/PREREGISTRATION.md](../research/PREREGISTRATION.md), [research/results/benchmark.json](../research/results/benchmark.json), the Research page |
+| Economics | Cost, comparison with commercial alternatives, local tariffs in MDL and EUR, payback in months → Research page, [abstract](moldsef/abstract.pdf) section 4 |
+| Documents | **Template A:** 2-page MoldSEF abstract + separate 1-page visual annex → [abstract.pdf](moldsef/abstract.pdf), [visual-annex.pdf](moldsef/visual-annex.pdf) (check them against the official template, which was not available). **Template B:** dated laboratory logbook → [logbook.md](moldsef/logbook.md) |
+| Code ownership | Algorithmic work written and committed by the student in incremental, dated commits; the *Still for the student to do* section of [AI_USAGE.md](AI_USAGE.md) completed |
+| Poster | **A0 vertical, or two A1 sheets side by side (horizontal)** |
+| Talk | **3-minute pitch + 7-minute Q&A** |
+| Team | The supervisor asked to check the team and role requirements with him (one or two students, as separate roles) |
+
 ## Upload checklist
 
 - [ ] Team registered; supervisor account created
-- [ ] Documentation: [DropWise-documentation.pdf](DropWise-documentation.pdf), which is the README (re-make it if the README changes)
+- [ ] Documentation: [DropWise-documentation.pdf](DropWise-documentation.pdf), which is the README. **It was made before the research upgrade of 5 November 2026 and must be re-made from the current README**
+- [ ] Research documents checked against the official MoldSEF templates: [abstract](moldsef/abstract.pdf), [visual annex](moldsef/visual-annex.pdf), [logbook](moldsef/logbook.md) (checklist filled in by the student)
 - [ ] Source code: https://github.com/nicolepuzur/DropWise (public, MIT)
 - [ ] Demo video (script below)
 - [x] The live address is in the README: https://drop-wise-s8pt.vercel.app
@@ -65,8 +80,20 @@ Likely questions, with short answers:
 - **What would you improve?** Real data for a chosen city, a map of water points, more languages, a measured check with a real farm or school.
 - **What happens to the visitor's data?** It stays in their browser; there are no accounts or analytics.
 
+## The 3-minute pitch + 7-minute Q&A (the supervisor's track)
+
+| Seconds | Part |
+|---|---|
+| 0–30 | The problem with one number: a quarter of Chișinău's water is lost in the network (25.9% accepted in the 2026 tariff calculation) |
+| 30–70 | The question and the two hypotheses, written down *before* any method was run |
+| 70–130 | The result, honestly: H1 and H2 only partially supported (−13.6% dry holes against a 50% target); what decides it is how well demand is known |
+| 130–165 | Live: the leak hunt on the Research page, model fitting against the naive rule, then moving the demand-uncertainty slider to 0 |
+| 165–180 | The money: payback in months, and which numbers are assumptions |
+
+For the Q&A, the likely questions are in the list above; add: *Why did you not change the target when you saw the result?* (the pre-registration was committed first, see `git log`), *Why do fingerprints beat model fitting when demand is known?* (a suspicion, not yet tested, see the logbook), *Where do the costs come from?* (tariff and rate sourced; dig cost, leaks per year and system cost are assumptions).
+
 ## Poster and booth
 
-- **Poster (A1, portrait):** the title; a QR code to the live site and another to the repository; the 100-litre dot picture from `docs/screenshots/04-problem-earth.jpg`; a row of the five solution icons, each with its key number; a strip with the sources and "AI cited: docs/AI_USAGE.md".
+- **Poster (A0 vertical, or two A1 sheets side by side):** the title; a QR code to the live site and another to the repository; the hypotheses with their verdicts; the benchmark bars (Figure 3 of the visual annex) and the saving-by-condition chart (Figure 4); the payback table; the 100-litre dot picture from `docs/screenshots/04-problem-earth.jpg`; a row of the five solution icons, each with its key number; a strip with the sources and "AI cited: docs/AI_USAGE.md".
 - **Booth:** a laptop with the home slideshow in full screen, so the scenes play while people walk by; a phone or tablet with the home audit, so a visitor can try it; a small printed card with "How much could your home save?" and the QR code.
 - **Look:** the site's palette (deep navy, aqua, a touch of sand) and its wide letter-spaced capitals, so the stand matches the screen.
