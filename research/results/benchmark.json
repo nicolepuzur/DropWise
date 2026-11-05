@@ -1,0 +1,653 @@
+{
+  "meta": {
+    "generatedAt": "2026-11-05T19:26:37.230Z",
+    "minutes": 11.4,
+    "machine": "Intel(R) Core(TM) i7-9700K CPU @ 3.60GHz (8 threads), Node v24.21.0",
+    "seeds": {
+      "development": 1,
+      "benchmark": 2027,
+      "bootstrap": 11
+    },
+    "candidatePlaces": 170,
+    "sensorJunctions": [
+      13,
+      0,
+      3,
+      10
+    ]
+  },
+  "main": {
+    "condition": {
+      "label": "main",
+      "sensorCount": 4,
+      "noiseM": 0.1,
+      "demandFactor": 1,
+      "scenarios": 1000
+    },
+    "methods": {
+      "random": {
+        "meanDryHoles": {
+          "estimate": 8.475,
+          "low": 8.297975,
+          "high": 8.659
+        },
+        "firstDigFinds": 0.028,
+        "withinThreeDigs": 0.087,
+        "neverFound": 0.728,
+        "medianFirstDigErrorUnits": 287.57875596285743,
+        "medianMilliseconds": 0.014400000000023283
+      },
+      "naive": {
+        "meanDryHoles": {
+          "estimate": 6.906,
+          "low": 6.665,
+          "high": 7.145
+        },
+        "firstDigFinds": 0.104,
+        "withinThreeDigs": 0.197,
+        "neverFound": 0.537,
+        "medianFirstDigErrorUnits": 212.47139764246356,
+        "medianMilliseconds": 0.05214999998861458
+      },
+      "fingerprint": {
+        "meanDryHoles": {
+          "estimate": 6.258,
+          "low": 6.004975,
+          "high": 6.494025
+        },
+        "firstDigFinds": 0.122,
+        "withinThreeDigs": 0.258,
+        "neverFound": 0.442,
+        "medianFirstDigErrorUnits": 154.09906743220222,
+        "medianMilliseconds": 0.030200000008335337
+      },
+      "fit": {
+        "meanDryHoles": {
+          "estimate": 5.966,
+          "low": 5.728,
+          "high": 6.21305
+        },
+        "firstDigFinds": 0.126,
+        "withinThreeDigs": 0.293,
+        "neverFound": 0.388,
+        "medianFirstDigErrorUnits": 152.1291175318164,
+        "medianMilliseconds": 242.65149999999267
+      }
+    },
+    "reductionVersusNaive": {
+      "fingerprint": {
+        "estimate": 0.0938314509122502,
+        "low": 0.060320303777330456,
+        "high": 0.12905660969800722
+      },
+      "fit": {
+        "estimate": 0.13611352447147407,
+        "low": 0.10018781313778706,
+        "high": 0.17163697437689124
+      }
+    }
+  },
+  "fingerprintPrepareMilliseconds": 22.1451,
+  "hypotheses": {
+    "h1": {
+      "target": 0.5,
+      "reduction": {
+        "estimate": 0.13611352447147407,
+        "low": 0.10018781313778706,
+        "high": 0.17163697437689124
+      },
+      "verdict": "partially supported"
+    },
+    "h2": {
+      "marginShare": 0.05,
+      "gapFitMinusFingerprint": {
+        "estimate": 0.034999999999999976,
+        "low": 0.003974999999999951,
+        "high": 0.066
+      },
+      "speedUp": 8034.817878576813,
+      "requiredSpeedUp": 10,
+      "verdict": "partially supported"
+    }
+  },
+  "subgroups": [
+    {
+      "label": "small leaks (lowest third of the log scale)",
+      "scenarios": 322,
+      "meanDryHoles": {
+        "random": 8.285714285714286,
+        "naive": 7.701863354037267,
+        "fingerprint": 7.46583850931677,
+        "fit": 7.161490683229814
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.030645161290322687,
+          "low": -0.01822534854583736,
+          "high": 0.07648010830393319
+        },
+        "fit": {
+          "estimate": 0.07016129032258067,
+          "low": 0.00633881553138165,
+          "high": 0.12864699040853567
+        }
+      }
+    },
+    {
+      "label": "medium leaks",
+      "scenarios": 355,
+      "meanDryHoles": {
+        "random": 8.56338028169014,
+        "naive": 6.729577464788733,
+        "fingerprint": 6.3154929577464785,
+        "fit": 6.070422535211268
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.06153202176642958,
+          "low": -0.0055087555162413706,
+          "high": 0.12390929989016884
+        },
+        "fit": {
+          "estimate": 0.0979489326077857,
+          "low": 0.03664316229134504,
+          "high": 0.15988000539355704
+        }
+      }
+    },
+    {
+      "label": "large leaks (highest third)",
+      "scenarios": 323,
+      "meanDryHoles": {
+        "random": 8.56656346749226,
+        "naive": 6.306501547987616,
+        "fingerprint": 4.9907120743034055,
+        "fit": 4.659442724458204
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.20864015709376538,
+          "low": 0.13842992041435073,
+          "high": 0.27173812359401855
+        },
+        "fit": {
+          "estimate": 0.26116838487972516,
+          "low": 0.19378349564782932,
+          "high": 0.3251923675079045
+        }
+      }
+    },
+    {
+      "label": "leak on the main line from the plant",
+      "scenarios": 227,
+      "meanDryHoles": {
+        "random": 8.581497797356828,
+        "naive": 9.361233480176212,
+        "fingerprint": 8.008810572687224,
+        "fit": 7.669603524229075
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.14447058823529424,
+          "low": 0.10323303670147041,
+          "high": 0.1886988366107769
+        },
+        "fit": {
+          "estimate": 0.18070588235294127,
+          "low": 0.13713398692810455,
+          "high": 0.2262371249040504
+        }
+      }
+    },
+    {
+      "label": "leak elsewhere",
+      "scenarios": 773,
+      "meanDryHoles": {
+        "random": 8.44372574385511,
+        "naive": 6.184993531694696,
+        "fingerprint": 5.74385510996119,
+        "fit": 5.465717981888745
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.07132399079690432,
+          "low": 0.022337400767144112,
+          "high": 0.1151130193672308
+        },
+        "fit": {
+          "estimate": 0.11629366241372097,
+          "low": 0.06980322914586239,
+          "high": 0.1623510223864087
+        }
+      }
+    }
+  ],
+  "robustness": [
+    {
+      "condition": {
+        "label": "sensor error 0.03 m",
+        "sensorCount": 4,
+        "noiseM": 0.03,
+        "demandFactor": 1,
+        "scenarios": 300
+      },
+      "methods": {
+        "random": {
+          "meanDryHoles": {
+            "estimate": 8.533333333333333,
+            "low": 8.199916666666667,
+            "high": 8.846666666666666
+          },
+          "firstDigFinds": 0.02666666666666667,
+          "withinThreeDigs": 0.08333333333333333,
+          "neverFound": 0.7233333333333334,
+          "medianFirstDigErrorUnits": 279.83895679274804,
+          "medianMilliseconds": 0.014299999980721623
+        },
+        "naive": {
+          "meanDryHoles": {
+            "estimate": 6.613333333333333,
+            "low": 6.173333333333333,
+            "high": 7.046666666666667
+          },
+          "firstDigFinds": 0.11,
+          "withinThreeDigs": 0.22,
+          "neverFound": 0.5066666666666667,
+          "medianFirstDigErrorUnits": 198.8146273428727,
+          "medianMilliseconds": 0.05199999999604188
+        },
+        "fingerprint": {
+          "meanDryHoles": {
+            "estimate": 5.733333333333333,
+            "low": 5.276583333333333,
+            "high": 6.190083333333333
+          },
+          "firstDigFinds": 0.14666666666666667,
+          "withinThreeDigs": 0.30666666666666664,
+          "neverFound": 0.37666666666666665,
+          "medianFirstDigErrorUnits": 136.45662863816312,
+          "medianMilliseconds": 0.03129999997327104
+        },
+        "fit": {
+          "meanDryHoles": {
+            "estimate": 5.21,
+            "low": 4.789916666666667,
+            "high": 5.633333333333334
+          },
+          "firstDigFinds": 0.15666666666666668,
+          "withinThreeDigs": 0.33666666666666667,
+          "neverFound": 0.29,
+          "medianFirstDigErrorUnits": 148.14273974336027,
+          "medianMilliseconds": 242.87595000001602
+        }
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.13306451612903225,
+          "low": 0.06032160907848305,
+          "high": 0.20273020586579615
+        },
+        "fit": {
+          "estimate": 0.21219758064516125,
+          "low": 0.14926556464838264,
+          "high": 0.2744523055017082
+        }
+      }
+    },
+    {
+      "condition": {
+        "label": "sensor error 0.3 m",
+        "sensorCount": 4,
+        "noiseM": 0.3,
+        "demandFactor": 1,
+        "scenarios": 300
+      },
+      "methods": {
+        "random": {
+          "meanDryHoles": {
+            "estimate": 8.533333333333333,
+            "low": 8.199916666666667,
+            "high": 8.846666666666666
+          },
+          "firstDigFinds": 0.02666666666666667,
+          "withinThreeDigs": 0.08333333333333333,
+          "neverFound": 0.7233333333333334,
+          "medianFirstDigErrorUnits": 279.83895679274804,
+          "medianMilliseconds": 0.014000000024680048
+        },
+        "naive": {
+          "meanDryHoles": {
+            "estimate": 7.47,
+            "low": 7.073333333333333,
+            "high": 7.8533333333333335
+          },
+          "firstDigFinds": 0.08333333333333333,
+          "withinThreeDigs": 0.15333333333333332,
+          "neverFound": 0.62,
+          "medianFirstDigErrorUnits": 282.23454801313665,
+          "medianMilliseconds": 0.05200000002514571
+        },
+        "fingerprint": {
+          "meanDryHoles": {
+            "estimate": 7.043333333333333,
+            "low": 6.623166666666666,
+            "high": 7.4600833333333325
+          },
+          "firstDigFinds": 0.11,
+          "withinThreeDigs": 0.19666666666666666,
+          "neverFound": 0.5533333333333333,
+          "medianFirstDigErrorUnits": 192.49224903641252,
+          "medianMilliseconds": 0.029199999989941716
+        },
+        "fit": {
+          "meanDryHoles": {
+            "estimate": 7.1866666666666665,
+            "low": 6.783333333333333,
+            "high": 7.596666666666667
+          },
+          "firstDigFinds": 0.07666666666666666,
+          "withinThreeDigs": 0.18,
+          "neverFound": 0.5366666666666666,
+          "medianFirstDigErrorUnits": 186.58471120088024,
+          "medianMilliseconds": 242.61235000001034
+        }
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.05711735832217757,
+          "low": 0.007458726168554114,
+          "high": 0.10180590893910227
+        },
+        "fit": {
+          "estimate": 0.03792949576082105,
+          "low": -0.01973949297895324,
+          "high": 0.09429998762318445
+        }
+      }
+    },
+    {
+      "condition": {
+        "label": "3 sensors",
+        "sensorCount": 3,
+        "noiseM": 0.1,
+        "demandFactor": 1,
+        "scenarios": 300
+      },
+      "methods": {
+        "random": {
+          "meanDryHoles": {
+            "estimate": 8.27,
+            "low": 7.923333333333333,
+            "high": 8.596666666666666
+          },
+          "firstDigFinds": 0.03333333333333333,
+          "withinThreeDigs": 0.08666666666666667,
+          "neverFound": 0.7066666666666667,
+          "medianFirstDigErrorUnits": 299.1205554098562,
+          "medianMilliseconds": 0.013700000010430813
+        },
+        "naive": {
+          "meanDryHoles": {
+            "estimate": 7.196666666666666,
+            "low": 6.779916666666667,
+            "high": 7.613416666666666
+          },
+          "firstDigFinds": 0.07666666666666666,
+          "withinThreeDigs": 0.18333333333333332,
+          "neverFound": 0.56,
+          "medianFirstDigErrorUnits": 248.20760551074835,
+          "medianMilliseconds": 0.051500000001396984
+        },
+        "fingerprint": {
+          "meanDryHoles": {
+            "estimate": 6.406666666666666,
+            "low": 5.9599166666666665,
+            "high": 6.830166666666666
+          },
+          "firstDigFinds": 0.10666666666666667,
+          "withinThreeDigs": 0.24666666666666667,
+          "neverFound": 0.46,
+          "medianFirstDigErrorUnits": 160.62560919012068,
+          "medianMilliseconds": 0.02950000000419095
+        },
+        "fit": {
+          "meanDryHoles": {
+            "estimate": 6.59,
+            "low": 6.156583333333333,
+            "high": 7.006749999999999
+          },
+          "firstDigFinds": 0.07666666666666666,
+          "withinThreeDigs": 0.22333333333333333,
+          "neverFound": 0.45,
+          "medianFirstDigErrorUnits": 175.45214110531444,
+          "medianMilliseconds": 243.51509999998962
+        }
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.10977304307549796,
+          "low": 0.05094301455730862,
+          "high": 0.1676799580715436
+        },
+        "fit": {
+          "estimate": 0.08429828624363134,
+          "low": 0.01920390375807375,
+          "high": 0.1495716079999716
+        }
+      }
+    },
+    {
+      "condition": {
+        "label": "6 sensors",
+        "sensorCount": 6,
+        "noiseM": 0.1,
+        "demandFactor": 1,
+        "scenarios": 300
+      },
+      "methods": {
+        "random": {
+          "meanDryHoles": {
+            "estimate": 8.256666666666666,
+            "low": 7.9,
+            "high": 8.596749999999998
+          },
+          "firstDigFinds": 0.04,
+          "withinThreeDigs": 0.09,
+          "neverFound": 0.6933333333333334,
+          "medianFirstDigErrorUnits": 274.610864717804,
+          "medianMilliseconds": 0.013700000010430813
+        },
+        "naive": {
+          "meanDryHoles": {
+            "estimate": 6.293333333333333,
+            "low": 5.83,
+            "high": 6.756666666666667
+          },
+          "firstDigFinds": 0.13666666666666666,
+          "withinThreeDigs": 0.27,
+          "neverFound": 0.47,
+          "medianFirstDigErrorUnits": 174.63222703251355,
+          "medianMilliseconds": 0.05415000003995374
+        },
+        "fingerprint": {
+          "meanDryHoles": {
+            "estimate": 6.036666666666667,
+            "low": 5.589916666666666,
+            "high": 6.523416666666666
+          },
+          "firstDigFinds": 0.16,
+          "withinThreeDigs": 0.29333333333333333,
+          "neverFound": 0.44666666666666666,
+          "medianFirstDigErrorUnits": 146.29594190322845,
+          "medianMilliseconds": 0.030399999988730997
+        },
+        "fit": {
+          "meanDryHoles": {
+            "estimate": 5.163333333333333,
+            "low": 4.72325,
+            "high": 5.6267499999999995
+          },
+          "firstDigFinds": 0.18,
+          "withinThreeDigs": 0.37666666666666665,
+          "neverFound": 0.31333333333333335,
+          "medianFirstDigErrorUnits": 119.35665431691848,
+          "medianMilliseconds": 241.6611499999708
+        }
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.040783898305084665,
+          "low": -0.0424335324819838,
+          "high": 0.11390464956396228
+        },
+        "fit": {
+          "estimate": 0.17955508474576265,
+          "low": 0.10639470042247089,
+          "high": 0.2455643984598064
+        }
+      }
+    },
+    {
+      "condition": {
+        "label": "demand uncertainty x0",
+        "sensorCount": 4,
+        "noiseM": 0.1,
+        "demandFactor": 0,
+        "scenarios": 300
+      },
+      "methods": {
+        "random": {
+          "meanDryHoles": {
+            "estimate": 8.533333333333333,
+            "low": 8.199916666666667,
+            "high": 8.846666666666666
+          },
+          "firstDigFinds": 0.02666666666666667,
+          "withinThreeDigs": 0.08333333333333333,
+          "neverFound": 0.7233333333333334,
+          "medianFirstDigErrorUnits": 279.83895679274804,
+          "medianMilliseconds": 0.013600000063888729
+        },
+        "naive": {
+          "meanDryHoles": {
+            "estimate": 6.426666666666667,
+            "low": 6.019833333333333,
+            "high": 6.886666666666667
+          },
+          "firstDigFinds": 0.11,
+          "withinThreeDigs": 0.22333333333333333,
+          "neverFound": 0.47,
+          "medianFirstDigErrorUnits": 174.01295988134217,
+          "medianMilliseconds": 0.05079999996814877
+        },
+        "fingerprint": {
+          "meanDryHoles": {
+            "estimate": 3.8033333333333332,
+            "low": 3.36325,
+            "high": 4.243416666666666
+          },
+          "firstDigFinds": 0.27666666666666667,
+          "withinThreeDigs": 0.54,
+          "neverFound": 0.23,
+          "medianFirstDigErrorUnits": 87.19898805228598,
+          "medianMilliseconds": 0.029600000008940697
+        },
+        "fit": {
+          "meanDryHoles": {
+            "estimate": 4.86,
+            "low": 4.413333333333333,
+            "high": 5.33
+          },
+          "firstDigFinds": 0.20666666666666667,
+          "withinThreeDigs": 0.3933333333333333,
+          "neverFound": 0.29,
+          "medianFirstDigErrorUnits": 128.2113417704431,
+          "medianMilliseconds": 239.20335000002524
+        }
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.40819502074688796,
+          "low": 0.3426456438645051,
+          "high": 0.47430790902095255
+        },
+        "fit": {
+          "estimate": 0.24377593360995842,
+          "low": 0.17077115281813618,
+          "high": 0.3144662735849056
+        }
+      }
+    },
+    {
+      "condition": {
+        "label": "demand uncertainty x2",
+        "sensorCount": 4,
+        "noiseM": 0.1,
+        "demandFactor": 2,
+        "scenarios": 300
+      },
+      "methods": {
+        "random": {
+          "meanDryHoles": {
+            "estimate": 8.533333333333333,
+            "low": 8.199916666666667,
+            "high": 8.846666666666666
+          },
+          "firstDigFinds": 0.02666666666666667,
+          "withinThreeDigs": 0.08333333333333333,
+          "neverFound": 0.7233333333333334,
+          "medianFirstDigErrorUnits": 279.83895679274804,
+          "medianMilliseconds": 0.013700000010430813
+        },
+        "naive": {
+          "meanDryHoles": {
+            "estimate": 7.453333333333333,
+            "low": 7.0633333333333335,
+            "high": 7.863416666666666
+          },
+          "firstDigFinds": 0.08666666666666667,
+          "withinThreeDigs": 0.15333333333333332,
+          "neverFound": 0.6166666666666667,
+          "medianFirstDigErrorUnits": 270.267026728803,
+          "medianMilliseconds": 0.051749999984167516
+        },
+        "fingerprint": {
+          "meanDryHoles": {
+            "estimate": 7.403333333333333,
+            "low": 6.959833333333333,
+            "high": 7.82
+          },
+          "firstDigFinds": 0.06666666666666667,
+          "withinThreeDigs": 0.18666666666666668,
+          "neverFound": 0.6033333333333334,
+          "medianFirstDigErrorUnits": 196.03726359963116,
+          "medianMilliseconds": 0.029600000008940697
+        },
+        "fit": {
+          "meanDryHoles": {
+            "estimate": 6.963333333333333,
+            "low": 6.556666666666667,
+            "high": 7.366749999999999
+          },
+          "firstDigFinds": 0.056666666666666664,
+          "withinThreeDigs": 0.18333333333333332,
+          "neverFound": 0.5266666666666666,
+          "medianFirstDigErrorUnits": 180.91473791139836,
+          "medianMilliseconds": 241.2951999999932
+        }
+      },
+      "reductionVersusNaive": {
+        "fingerprint": {
+          "estimate": 0.0067084078711985295,
+          "low": -0.048504534691247936,
+          "high": 0.060719282939197254
+        },
+        "fit": {
+          "estimate": 0.06574239713774599,
+          "low": 0.005622914122646661,
+          "high": 0.12145895674055103
+        }
+      }
+    }
+  ]
+}
